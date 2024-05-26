@@ -1,0 +1,160 @@
+<div class="register-page">
+    <div class="left-section">
+        <div class="overlay"></div>
+        <img class="owm-logo" src="../../assets/images/owm-logo.png" alt="OWM Logo">
+        <h2>Let's Get Started</h2>
+        <p>The OWM detects and stops leaks at the source using Artificial Intelligence. It alerts you when water is leaking and automatically shuts it off. Intelligent real-time monitoring identifies sources of leaks and waste, reducing your water consumption and preventing damage.</p>
+    </div>
+    <div class="right-section">
+        <h1>Start Controlling your Water</h1>
+        <h3>Sign Up to access the OWM Application</h3>
+        <form [formGroup]="registerForm" (ngSubmit)="submitDetails()">
+            <p-card [style]="{ width: '360px' }">
+                <div class="form-row">
+                    <div class="field form-group">
+                        <label for="firstName">First Name</label>
+                        <input
+                        type="text"
+                        pInputText
+                        formControlName="firstName"
+                        name="firstName"
+                        />
+                        <small
+                        *ngIf="firstName.invalid && (firstName.dirty || firstName.touched)"
+                        class="block p-error"
+                        >
+                        <div *ngIf="firstName.errors?.['required']">First Name is required.</div>
+                        <div *ngIf="firstName.errors?.['pattern']">Enter a valid Name</div>
+                        </small>
+                    </div>
+                    <div class="field form-group">
+                        <label for="lastName">Last Name</label>
+                        <input
+                        type="text"
+                        pInputText
+                        formControlName="lastName"
+                        name="lastName"
+                        />
+                        <small
+                        *ngIf="lastName.invalid && (lastName.dirty || lastName.touched)"
+                        class="block p-error"
+                        >
+                        <div *ngIf="lastName.errors?.['required']">Last Name is required.</div>
+                        <div *ngIf="lastName.errors?.['pattern']">Enter a valid Name</div>
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input formControlName="username" type="text" id="username" name="username">
+                    <small
+                        *ngIf="username.invalid && (username.dirty || username.touched)"
+                        class="block p-error"
+                        >
+                        <div *ngIf="username.errors?.['required']">Username is required.</div>
+                        <div *ngIf="username.errors?.['pattern']">Enter a valid Name</div>
+                    </small>
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="age">Age</label>
+                        <input formControlName="age" type="number" id="age" name="age">
+                        <small
+                        *ngIf="age.invalid && (age.dirty || age.touched)"
+                        class="block p-error"
+                        >
+                        <div *ngIf="age.errors?.['required']">Age is required.</div>
+                    </small>
+                    </div>
+                    <div class="form-group">
+                        <label for="gender">Gender</label>
+                        <select formControlName="gender" id="gender" name="gender">
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="phoneNumber">Phone Number</label>
+                    <input formControlName="phoneNumber" type="tel" id="phoneNumber" name="phoneNumber">
+                </div>
+                <div class="field form-group">
+                    <label for="email">Email</label>
+                    <input
+                    type="text"
+                    pInputText
+                    formControlName="email"
+                    name="email"
+                    />
+                    <small
+                    *ngIf="email.invalid && (email.dirty || email.touched)"
+                    class="block p-error"
+                    >
+                    <div *ngIf="email.errors?.['required']">Email is required.</div>
+                    <div *ngIf="email.errors?.['email']">Email should be valid</div>
+                    </small>
+                </div>
+                <div class="form-row">
+                    <div class="field form-group">
+                        <label for="password">Password</label>
+                        <input
+                        type="password"
+                        pInputText
+                        formControlName="password"
+                        name="password"
+                        />
+                        <small
+                        *ngIf="password.invalid && (password.dirty || password.touched)"
+                        class="block p-error"
+                        >
+                        <div *ngIf="password.errors?.['required']">Password is required.</div>
+                        </small>
+                    </div>
+                    <div class="field form-group">
+                        <label for="confirmPassword">Confirm Password</label>
+                        <input
+                            type="password"
+                            pInputText
+                            formControlName="confirmPassword"
+                            name="confirmPassword"
+                        />
+                        <small
+                        *ngIf="
+                            confirmPassword.invalid &&
+                            (confirmPassword.dirty || confirmPassword.touched)
+                        "
+                        class="block p-error"
+                        >
+                        <div *ngIf="confirmPassword.errors?.['required']">
+                            Confirm the password
+                        </div>
+                        </small>
+                        <small
+                        class="block p-error"
+                        *ngIf="registerForm.errors?.['passwordMismatch'] && confirmPassword.valid && password.valid"
+                        >
+                        Password should match
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="address">Address</label>
+                    <input formControlName="address" type="text" id="address" name="address">
+                </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="apartmentNo">Apartment No</label>
+                        <input formControlName="apartmentNo" type="text" id="apartmentNo" name="apartmentNo">
+                    </div>
+                    <div class="form-group">
+                        <label for="meterID">Meter ID</label>
+                        <input  formControlName="meterID" type="text" id="meterID" name="meterID">
+                    </div>
+                </div>
+                <button type="submit">Register</button>
+                <p class="login-link">Already have an account? <a href="/login">Login Here</a></p>
+            </p-card>
+        </form>
+    </div>
+</div>

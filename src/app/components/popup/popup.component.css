@@ -1,0 +1,31 @@
+.dialog-title {
+    background-color: #008DDA; /* Title background color */
+    color: white; /* Title text color */
+    padding: 16px;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.dialog-content {
+    padding: 16px;
+    font-size: 16px;
+    color: #008DDA; /* Text color */
+    border-radius: 5px;
+    width: 300px;
+}
+
+.dialog-actions {
+    padding: 16px;
+    text-align: right;
+}
+
+button {
+    padding: 10px;
+    background-color: #008DDA; /* Button background color */
+    color: white; /* Button text color */
+    &:hover {
+        background-color: #41C9E2; /* Button hover color */
+    }
+    border: 0px;
+    border-radius: 5px;
+}

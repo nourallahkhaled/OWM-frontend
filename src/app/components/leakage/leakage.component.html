@@ -1,0 +1,36 @@
+<app-header></app-header>
+<section class="header">
+    <h1>Detect Water Leakage</h1>
+    <div class="cover-image">
+        <img src="https://aspray.com/wp-content/uploads/2022/11/shutterstock_1831995412-scaled.webp" alt="Cover Photo">
+    </div>
+</section>
+<section>
+    <h2>Leakage Detection</h2>
+    <div class="leakage-container">
+        <img src="../../../assets/images/water-pipe.png" alt="">
+        <div>
+            <p>No Leakage Detected Until 19/03/2024 12:35 PM</p>
+            <button onclick="leakageDetectionClicked()">Detect Leakage</button>  
+        </div>
+    </div>
+</section>
+
+<section>
+    <h2 class="motor-valve-title">Motor Valve</h2>
+    <div class="motor-valve-container">
+        <img src="../../../assets/images/valve.png" alt="">
+        <div>
+            <h3>Open/Close Motor Valve</h3>
+            <p>
+                <mat-slide-toggle [(ngModel)]="isMotorValveOpened" (change)="onToggleChange()">
+                {{ isMotorValveOpened ? 'Motor Valve Opened' : 'Motor Valve Closed' }}
+                </mat-slide-toggle>
+                Last Time Checked 19/03/2024 12:35 PM
+            </p>
+            <button (click)="motorStatusDetectionClicked()">Check Motor Valve Status</button>  
+        </div>
+    </div>
+</section>
+
+<app-footer></app-footer>

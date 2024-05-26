@@ -1,0 +1,83 @@
+<app-header></app-header>
+<section class="header">
+    <div class="container">
+        <h1>Welcome to Water Smart Meter</h1>
+        <p>Track your water consumption in real-time and optimize your usage</p>
+    </div>
+</section>
+
+<section class="key-features">
+    <h2>Highlighting Our Prime Features</h2>
+    <div class="container">
+        <div class="feature">
+            <img src="../../../assets/images/monitoring.png" height="270px" alt="Real-Time Monitoring">
+            <h3>Real-Time Monitoring</h3>
+            <p>View your water consumption data instantly</p>
+        </div>
+        <div class="feature">
+            <img src="../../../assets/images/leak.png" height="270px" alt="Leakage Detection">
+            <h3>Leakage Detection</h3>
+            <p>Detect leaks in your water system and take prompt action</p>
+        </div>
+        <div class="feature">
+            <img src="../../../assets/images/undraw_credit_card_re_blml.svg" height="270px" alt="Billing and Payment">
+            <h3>Billing and Payment</h3>
+            <p>Manage your bills and make payments hassle-free</p>
+        </div>
+    </div>
+</section>
+
+<section class="banner">
+    <h2>Empowering Results</h2>
+
+    <div class="container">
+        <div class="banner-item">
+            <h2>25000</h2>
+            <p>LEAKAGES DETECTED</p>
+        </div>
+        <div class="banner-item">
+            <h2>374</h2>
+            <p>HAPPY CLIENTS</p>
+        </div>
+        <div class="banner-item">
+            <h2>350000</h2>
+            <p>WIRES & CABLES CAPABILITY</p>
+        </div>
+        <div class="banner-item">
+            <h2>23</h2>
+            <p>AWARDS</p>
+        </div>
+    </div>
+</section>
+<section class="faq">
+    <div class="container">
+        <h2><img width="200px" src="../../../assets/images/faq.png" alt=""></h2> 
+        <div class="faq-item">
+            <h3>What is Real-Time Monitoring?</h3>
+            <p>Real-time monitoring allows you to view your water consumption data instantly, helping you track your usage and make informed decisions.</p>
+        </div>
+        <div class="faq-item">
+            <h3>How does Leakage Detection work?</h3>
+            <p>Leakage detection utilizes advanced algorithms to detect leaks in your water system, enabling you to take prompt action and prevent water wastage.</p>
+        </div>
+        <div class="faq-item">
+            <h3>What options are available for Billing and Payment?</h3>
+            <p>We offer various billing and payment methods to suit your preferences, including online payments, automatic deductions, and traditional billing methods.</p>
+        </div>
+    </div>
+</section>
+
+
+<section class="team">
+    <div class="container">
+        <h2>Meet the Founders</h2>
+        <div class="team-members">
+            <div class="team-member" *ngFor="let member of teamMembers">
+                <img [src]="member.photoUrl" alt="{{ member.name }}">
+                <h3>{{ member.name }}</h3>
+                <p>{{ member.role }}</p>
+            </div>
+        </div>
+    </div>
+</section>
+<app-footer></app-footer>

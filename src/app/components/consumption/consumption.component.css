@@ -1,0 +1,38 @@
+.header{
+    text-align: center;
+}
+h1{
+    font-weight: bold;
+    font-size: 26px;
+    padding: 30px;
+    background-color: #F7EEDD;
+    color: var(--dark-blue);
+}
+.consumption-page{
+    background-color: #F7EEDD;
+}
+.accordion-title{
+    font-size: 20px;
+    color: var(--dark-blue);
+    padding: 100px;
+}
+.charts-container {
+    display: flex;
+}
+
+.chart {
+    flex: 1;
+    margin-right: 20px; /* Adjust spacing between charts */
+    overflow: hidden;
+}
+.box-container{
+    padding: 10px 100px;
+}
+button{
+    background-color: var(--dark-blue) !important;
+    color: white !important;
+    margin-left: 20px;
+    margin-bottom: 20px;
+    width: 200px;
+    height: 50px;
+}

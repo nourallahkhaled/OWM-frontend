@@ -1,0 +1,21 @@
+{
+  "users": [
+    {
+      "id": "6d3d",
+      "firstName": "Nourallah",
+      "lastName": "Khaled",
+      "username": "nourallahkhaled",
+      "email": "nourallahkhaled99@gmail.com",
+      "password": "1234",
+      "age": 25,
+      "gender": "female",
+      "phoneNumber": "01100767144",
+      "address": "Fardous city, 6th october",
+      "apartmentNo": "52",
+      "meterID": "1344"
+    }
+  ],
+  "_defaults": {
+    "users": "get"
+  }
+}

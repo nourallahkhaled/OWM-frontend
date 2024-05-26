@@ -1,0 +1,49 @@
+.footer {
+    background-color: white; 
+    color: var(--dark-blue); 
+    padding: 20px; 
+
+    .footer-logo{
+        margin-left: 150px;
+        margin-top: 20px;
+        height: auto;
+        width: 150px;
+    }
+    .company,
+    .help,
+    .social-media {
+        display: inline-block;
+        margin: 0 140px; 
+    }
+    h4{
+        margin-bottom: 25px;
+        color: var(--dark-blue);
+    }
+
+    ul {
+        list-style-type: none; 
+    }
+
+    ul li {
+        margin-right: 20px;
+        margin-bottom: 15px;
+    }
+
+    ul li a {
+        color: var(--dark-blue); 
+        text-decoration: none;
+    }
+
+    ul li a:hover {
+        color: var(--blue); 
+    }
+    .social-icon{
+        display: block;
+    }
+}
+.copyrights{
+    text-align: center; 
+    background-color: white; 
+    color: var(--dark-blue);
+    padding: 20px; 
+}

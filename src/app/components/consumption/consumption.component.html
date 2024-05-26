@@ -1,0 +1,146 @@
+<section class="header">
+    <h1>Track Your Water Consumption</h1>
+    <img src="../../assets/images/charts.svg" alt="">
+</section>
+
+<section class="consumption-page">
+    <div class="container">
+        <mat-accordion>
+            <!-- First Accordion -->
+            <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                    <mat-panel-title class="accordion-title">
+                        Real Time Consumption Charts
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
+                <div class="box-container">
+                    <p>Line Charts to show Consumption for Flow, Litres and Pressure</p>
+                <div class="charts-container">
+                    <div class="chart">
+                        <h2 style="color: #41C9E2;">Flow Consumption</h2>
+                        <ngx-charts-line-chart
+                            [results]="flowLineChartData"
+                            [xAxis]="true"
+                            [yAxis]="true"
+                            [legend]="true"
+                            [showXAxisLabel]="true"
+                            [showYAxisLabel]="true"
+                            xAxisLabel="Time"
+                            yAxisLabel="Flow"
+                            [view]="[800, 400]" 
+                        ></ngx-charts-line-chart>
+                    </div>
+                
+                    <div class="chart">
+                        <h2 style="color: #41C9E2;">Litres Consumption</h2>
+                        <ngx-charts-line-chart
+                            [results]="litresLineChartData"
+                            [xAxis]="true"
+                            [yAxis]="true"
+                            [legend]="true"
+                            [showXAxisLabel]="true"
+                            [showYAxisLabel]="true"
+                            xAxisLabel="Time"
+                            yAxisLabel="Litres"
+                            [view]="[800, 400]" 
+                        ></ngx-charts-line-chart>
+                    </div>
+                
+                    <div class="chart">
+                        <h2 style="color: #41C9E2;">Pressure Consumption</h2>
+                        <ngx-charts-line-chart
+                            [results]="pressureLineChartData"
+                            [xAxis]="true"
+                            [yAxis]="true"
+                            [legend]="true"
+                            [showXAxisLabel]="true"
+                            [showYAxisLabel]="true"
+                            xAxisLabel="Time"
+                            yAxisLabel="Pressure"
+                            [view]="[800, 400]" 
+                        ></ngx-charts-line-chart>
+                    </div>
+                </div>   
+                </div>
+            </mat-expansion-panel>
+        
+            <!-- Second Accordion -->
+            <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                    <mat-panel-title class="accordion-title">
+                        Water Consumption Chart
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
+                <div class="box-container">
+                    <p>You can know your water consumption during anytime</p>
+                <div class="filters">
+                    <mat-form-field>
+                        <mat-label>From Date</mat-label>
+                        <input matInput [matDatepicker]="fromDatepicker" placeholder="From Date" [(ngModel)]="fromDate">
+                        <mat-datepicker-toggle matSuffix [for]="fromDatepicker"></mat-datepicker-toggle>
+                        <mat-datepicker #fromDatepicker></mat-datepicker>
+                    </mat-form-field>
+                    
+                    <mat-form-field>
+                        <mat-label>To Date</mat-label>
+                        <input matInput [matDatepicker]="toDatepicker" placeholder="To Date" [(ngModel)]="toDate">
+                        <mat-datepicker-toggle matSuffix [for]="toDatepicker"></mat-datepicker-toggle>
+                        <mat-datepicker #toDatepicker></mat-datepicker>
+                    </mat-form-field>
+                    
+                    <mat-form-field>
+                        <mat-label>Time Filter</mat-label>
+                        <mat-select (selectionChange)="applyTimeFilter($event.value)">
+                            <mat-option value="Day">Day</mat-option>
+                            <mat-option value="Week">Week</mat-option>
+                            <mat-option value="Month">Month</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <button mat-raised-button (click)="applyFilter(fromDate, toDate, timeFilter)">Apply</button>
+                </div>
+                
+                <ngx-charts-bar-vertical
+                    [view]="[800, 400]"
+                    [scheme]="colorScheme"
+                    [results]="waterBarChartData"
+                    [gradient]="false"
+                    [xAxis]="true"
+                    [yAxis]="true"
+                    [legend]="true"
+                    [showXAxisLabel]="true"
+                    [showYAxisLabel]="true"
+                    xAxisLabel="Date"
+                    yAxisLabel="Consumption"
+                    (select)="onSelect($event)">
+                </ngx-charts-bar-vertical>
+                </div>
+            </mat-expansion-panel>
+    
+            <!-- Third Accordion -->
+            <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                    <mat-panel-title class="accordion-title">
+                        Money Chart
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
+                <div class="box-container">
+                    <p>Track Your Payment Through This Bar Chart</p>
+                <ngx-charts-bar-vertical
+                    [view]="[800, 400]"
+                    [scheme]="colorScheme"
+                    [results]="moneyBarChartData"
+                    [gradient]="false"
+                    [xAxis]="true"
+                    [yAxis]="true"
+                    [legend]="true"
+                    [showXAxisLabel]="true"
+                    [showYAxisLabel]="true"
+                    xAxisLabel="Date"
+                    yAxisLabel="Money"
+                    (select)="onSelect($event)">
+                </ngx-charts-bar-vertical>
+                </div>
+            </mat-expansion-panel>
+        </mat-accordion>
+    </div>
+</section>

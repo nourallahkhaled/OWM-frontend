@@ -1,0 +1,97 @@
+.header{
+    text-align: center;
+}
+
+.cover-image img {
+    width: 100%;
+    height: 450px;
+    object-fit: cover; 
+}
+
+h1{
+    font-weight: bold;
+    font-size: 26px;
+    padding: 30px;
+    background-color: #F7EEDD;
+    color: var(--dark-blue);
+}
+h2{
+    font-weight: bold;
+    font-size: 24px;
+    padding: 20px 0px;
+    color: var(--dark-blue);
+    text-align: center;
+    background-color: var(--beige);
+}
+.leakage-container{
+    display: flex;
+    align-items: center; 
+    justify-content: center; 
+    
+    p{
+        font-size: 18px;
+        margin-left: 20px;
+        text-align: center;
+    }
+
+    button {
+        background-color: var(--blue);
+        color: #000;
+        padding: 12px;
+        width: 180px;
+        border: 0px;
+        border-radius: 5px;
+        text-align: center;
+        margin-left: 20px;
+        font-size: 16px;
+        cursor: pointer;
+    }
+}
+.motor-valve-title{
+    background-color: var(--beige);
+    margin: 0;
+}
+.motor-valve-container {
+    background-color: var(--beige);
+    display: flex;
+    align-items: center; 
+    justify-content: center; 
+
+    img{
+        margin-bottom: 20px;
+    }
+    
+    p{
+        font-size: 18px;
+        text-align: center;
+    }
+
+    h3{
+        font-weight: bold;
+        font-size: 22px;
+        padding: 20px 0px;
+        color: var(--dark-blue);
+    }
+}
+::ng-deep .mat-mdc-slide-toggle .mdc-switch:enabled+.mdc-label {
+    font-size: 18px !important;
+    font-weight: bold;
+}
+::ng-deep .mdc-switch:enabled .mdc-switch__track::after {
+    background: var(--blue) !important;
+}
+::ng-deep .mdc-switch.mdc-switch--selected:enabled .mdc-switch__handle::after {
+    background: var(--dark-blue) !important;
+}
+button {
+    background-color: var(--blue);
+    color: #000;
+    padding: 12px;
+    width: 180px;
+    border: 0px;
+    border-radius: 5px;
+    text-align: center;
+    margin-top: 10px;
+    margin-left: 25px;
+    cursor: pointer;
+}
