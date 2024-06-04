@@ -100,7 +100,7 @@ button {
 .profile-row p {
     flex: 1;
     margin: 10px 10px;
-    min-width: 100px;
+    min-width: 100px; /* Adjust as necessary */
     word-break: break-word;
     font-size: 18px;
 }

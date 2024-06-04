@@ -9,6 +9,10 @@ import { authGuard } from './guards/auth.guard';
 import { LeakageComponent } from './components/leakage/leakage.component';
 import { BillsComponent } from './components/bills/bills.component';
 import { ProfileComponent } from './components/profile/profile.component';
+import { UsersTableComponent } from './components/admin-view/users-table/users-table.component';
+import { adminGuard } from './guards/admin.guard';
+import { EditUserFormComponent } from './components/admin-view/Forms/edit-user-form/edit-user-form.component';
+import { ContactComponent } from './components/contact/contact.component';
 
 const routes: Routes = [
   {path:'home', component: HomeComponent, canActivate: [authGuard]},
@@ -19,7 +23,11 @@ const routes: Routes = [
   {path:'landing', component: LandingComponent},
   {path:'bills', component: BillsComponent},
   {path:'leakage', component: LeakageComponent},
-  {path:'profile', component: ProfileComponent},
+  {path:'profile/:id', component: ProfileComponent},
+  {path:'users', component: UsersTableComponent, canActivate: [adminGuard] },
+  {path:'users/edit/:id', component: EditUserFormComponent },
+  {path:'admins/add', component: EditUserFormComponent },
+  {path:'contact-us', component: ContactComponent },
 ];
 
 @NgModule({

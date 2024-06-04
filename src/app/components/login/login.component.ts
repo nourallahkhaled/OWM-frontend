@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
-import { MessageService } from 'primeng/api';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
@@ -19,7 +19,7 @@ export class LoginComponent {
     private fb: FormBuilder,
     private authService: AuthService,
     private router: Router,
-    private msgService: MessageService,
+    private snackBar: MatSnackBar,
   ) { }
 
   get email() {
@@ -29,20 +29,38 @@ export class LoginComponent {
 
   loginUser() {
     const { email, password } = this.loginForm.value;
-    this.authService.getUserByEmail(email as string).subscribe(
-      response => {
+    this.authService.getUserByEmail(email as string).subscribe({
+      next: (response) => {
         if (response.length > 0 && response[0].password === password) {
-          sessionStorage.setItem('email', email as string);
-          this.router.navigate(['/home']);
+          this.authService.getUserRole(email as string).subscribe({
+            next: (user) => {
+            if(user){
+              const role = user.role
+              sessionStorage.setItem('email', email as string);
+              sessionStorage.setItem('role', role); 
+              sessionStorage.setItem('userId', response[0].id)
+              this.authService.login();
+              this.router.navigate(['/landing']);
+            }else{
+                this.snackBar.open('Error getting user role.', 'Close', {
+                  duration: 3000,
+                });
+            }
+          },
+          });
         } else {
-          this.msgService.add({ severity: 'error', summary: 'Error', detail: 'email or password is wrong' });
+          this.snackBar.open("Email or Password isn't correct.", 'Close', {
+            duration: 3000, 
+          });
         }
       },
-      error => {
-        this.msgService.add({ severity: 'error', summary: 'Error', detail: 'Something went wrong' });
+      error: (e) => {
+        this.snackBar.open('Something Went wrong!', 'Close', {
+          duration: 3000, 
+        });
       }
-
-    )
+    
+  })
   }
 
 }

@@ -39,6 +39,9 @@ import { BillsComponent } from './components/bills/bills.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { PopupComponent } from './components/popup/popup.component';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { UsersTableComponent } from './components/admin-view/users-table/users-table.component';
+import { EditUserFormComponent } from './components/admin-view/Forms/edit-user-form/edit-user-form.component';
+import { ContactComponent } from './components/contact/contact.component';
 
 @NgModule({
   declarations: [
@@ -53,7 +56,10 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
     LeakageComponent,
     BillsComponent,
     ProfileComponent,
-    PopupComponent
+    PopupComponent,
+    UsersTableComponent,
+    EditUserFormComponent,
+    ContactComponent
   ],
   imports: [
     BrowserModule,

@@ -1,18 +1,49 @@
 {
   "users": [
     {
-      "id": "6d3d",
       "firstName": "Nourallah",
       "lastName": "Khaled",
       "username": "nourallahkhaled",
       "email": "nourallahkhaled99@gmail.com",
       "password": "1234",
+      "address": "Fardous city, 6th october",
+      "apartmentNo": "51",
       "age": 25,
       "gender": "female",
-      "phoneNumber": "01100767144",
+      "phoneNumber": 1100767145,
+      "meterID": "13354",
+      "role": "user",
+      "id": "6d3d"
+    },
+    {
+      "firstName": "Noor El Deen",
+      "lastName": "Magdy",
+      "username": "nooreldeenmagdy",
+      "email": "nooreldeenmagdy@gmail.com",
+      "password": "1234",
+      "address": "Madina Monawarah, Omranyea",
+      "apartmentNo": "22",
+      "age": 27,
+      "gender": "male",
+      "phoneNumber": "01150462982",
+      "meterID": "",
+      "role": "admin",
+      "id": "2c60"
+    },
+    {
+      "firstName": "Mai",
+      "lastName": "Hesham",
+      "username": "mayoya",
+      "email": "maihesham@gmail.com",
+      "password": "1234",
       "address": "Fardous city, 6th october",
-      "apartmentNo": "52",
-      "meterID": "1344"
+      "apartmentNo": 108,
+      "age": 45,
+      "gender": "female",
+      "phoneNumber": "011028384782",
+      "meterID": "33455",
+      "role": "user",
+      "id": "6db2"
     }
   ],
   "_defaults": {

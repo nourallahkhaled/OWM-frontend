@@ -1,0 +1,36 @@
+<app-header></app-header>
+<section class="header">
+    <h1>Contact Us!</h1>
+    <img src="../../assets/images/undraw_Mailbox_re_dvds.png" alt="">
+</section>
+
+<section class="section">
+    <div class="container">
+        <form (ngSubmit)="submitForm()">
+            <div class="field">
+                <label class="label">Name</label>
+                <div class="control">
+                    <input type="text" name="name" class="input" required [(ngModel)]="name">
+                </div>
+            </div>
+            <div class="field">
+                <label class="label">Email</label>
+                <div class="control">
+                    <input type="email" name="email" class="input" required [ngModel]="email">
+                </div>
+            </div>
+            <div class="field">
+                <label class="label">Your Message</label>
+                <div class="control">
+                    <textarea name="message" class="textarea" required [ngModel]="message"></textarea>
+                </div>
+            </div>
+            <div class="field">
+                <div class="control">
+                    <button type="submit" class="button is-large is-warning">Send</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</section>
+<app-footer></app-footer>

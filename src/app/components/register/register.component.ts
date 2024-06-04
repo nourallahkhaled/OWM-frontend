@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
-import { MessageService } from 'primeng/api';
 import { User } from 'src/app/interfaces/auth';
 import { AuthService } from 'src/app/services/auth.service';
 import { passwordMatchValidator } from 'src/app/shared/password-match.directive';
@@ -25,7 +25,8 @@ export class RegisterComponent {
     phoneNumber: [''],
     address: [''],
     apartmentNo: [''],
-    meterID: ['']
+    meterID: [''],
+    role:['user']
   }, {
     validators: passwordMatchValidator
   })
@@ -33,8 +34,8 @@ export class RegisterComponent {
   constructor(
     private fb: FormBuilder,
     private authService: AuthService,
-    private messageService: MessageService,
-    private router: Router
+    private router: Router,
+    private snackBar: MatSnackBar,
   ) { }
 
   get username() {
@@ -69,17 +70,34 @@ export class RegisterComponent {
     console.log(this.registerForm.value);
     console.log(postData);
     delete postData.confirmPassword;
-    this.authService.registerUser(postData as User).subscribe(
-      response => {
-        console.log(response);
-        this.messageService.add({ severity: 'success', summary: 'Success', detail: 'Register successfully' });
-        this.router.navigate(['login'])
+    this.authService.emailExists(postData.email).subscribe(
+      emailExists => {
+        if (emailExists) {
+          this.snackBar.open('Email already exists.', 'Close', {
+            duration: 3000,
+          });
+        } else {
+          this.authService.registerUser(postData as unknown as User).subscribe(
+            response => {
+              this.snackBar.open('Registered Successfully.', 'Close', {
+                duration: 3000,
+              });
+              this.router.navigate(['login']);
+            },
+            error => {
+              this.snackBar.open('Something went wrong.', 'Close', {
+                duration: 3000,
+              });
+            }
+          );
+        }
       },
       error => {
-        console.log(error);
-        this.messageService.add({ severity: 'error', summary: 'Error', detail: 'Something went wrong' });
+        this.snackBar.open('Something went wrong.', 'Close', {
+          duration: 3000,
+        });
       }
-    )
+    );
   }
 
 }

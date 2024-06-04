@@ -8,7 +8,7 @@
     background-size: cover;
     background-position: center;
     padding: 20px;
-    height: 95.6vh;
+    height: 100vh;
     width: auto;
     text-align: center;
     z-index: -1;
@@ -67,7 +67,7 @@
 }
 
 form {
-    max-width: 400px; 
+    max-width: 500px; 
     margin: 0 auto; 
 }
 
@@ -84,7 +84,7 @@ input{
     outline: none;
 }
 select{
-    width: 114%; 
+    width: 100%; 
     padding: 10px;
     border: 1px solid var(--blue); 
     border-radius: 5px; 
@@ -112,7 +112,7 @@ button{
     font-weight: bold;
     padding: 20px;
     border-radius: 5px;
-    width: 94%;
+    width: 90%;
     border: 0px;
     cursor: pointer;
 }

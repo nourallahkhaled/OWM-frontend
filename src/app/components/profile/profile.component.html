@@ -1,1 +1,133 @@
-<p>profile works!</p>
+<app-header></app-header>
+<section class="header">
+    <h1>Welcome, {{ user?.firstName }}!</h1>
+    <img src="../../../assets/images/profile/undraw_Profile_re_4a55.png" *ngIf="user?.gender=='male'" alt="">
+    <img src="../../../assets/images/profile/undraw_Wall_post_re_y78d.png" *ngIf="user?.gender=='female'" alt="">
+</section>
+<!-- Display user data -->
+<div class="user-data-container" *ngIf="!editMode">
+    <div class="profile">
+        <h2>{{ user?.firstName }}'s Profile</h2>
+        <div class="profile-row">
+            <p><strong>First Name:</strong> {{ user?.firstName }}</p>
+            <p><strong>Last Name:</strong> {{ user?.lastName }}</p>
+        </div>
+        <div class="profile-row">
+            <p><strong>Username:</strong> {{ user?.username }}</p>
+            <p><strong>Email:</strong> {{ user?.email }}</p>
+        </div>
+        <div class="profile-row">
+            <p><strong>Address:</strong> {{ user?.address }}</p>
+            <p><strong>Apartment No.:</strong> {{ user?.apartmentNo }}</p>
+        </div>
+        <div class="profile-row">
+            <p><strong>Age:</strong> {{ user?.age }}</p>
+            <p><strong>Gender:</strong> {{ user?.gender }}</p>
+        </div>
+        <div class="profile-row">
+            <p><strong>Phone Number:</strong> {{ user?.phoneNumber }}</p>
+            <p><strong>Meter ID:</strong> {{ user?.meterID }}</p>
+        </div>
+        <button (click)="editModeOn()">Edit Profile</button>
+    </div>
+</div>
+
+<!-- Edit profile -->
+<div class="container" *ngIf="editMode">
+    <div class="profile">
+        <h2>{{ user?.firstName }}'s Profile</h2>
+        <form [formGroup]="profileForm" (ngSubmit)="updateProfile()">
+            <div class="form-group">
+                <div class="name-fields">
+                    <div class="form-group" style="margin-right: 15px;">
+                        <label for="firstName">First Name</label>
+                        <input type="text" id="firstName" formControlName="firstName">
+                        <!-- Add validation messages here if needed -->
+                    </div>
+                    <div class="form-group">
+                        <label for="lastName">Last Name</label>
+                        <input type="text" id="lastName" formControlName="lastName">
+                        <!-- Add validation messages here if needed -->
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="name-fields">
+                    <div class="form-group" style="margin-right: 15px;">
+                        <label for="username">Username</label>
+                        <input type="text" id="username" formControlName="username">
+                        <!-- Add validation messages here if needed -->
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" formControlName="email">
+                        <!-- Add validation messages here if needed -->
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="name-fields">
+                    <div class="form-group" style="margin-right: 15px;">
+                        <label for="address">Address</label>
+                        <input type="text" id="address" formControlName="address">
+                        <!-- Add validation messages here if needed -->
+                    </div>
+                    <div class="form-group">
+                        <label for="apartmentNo">Apartment No</label>
+                        <input type="text" id="apartmentNo" formControlName="apartmentNo">
+                        <!-- Add validation messages here if needed -->
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="name-fields">
+                    <div class="form-group" style="margin-right: 15px;">
+                        <label for="age">Age</label>
+                        <input type="number" id="age" formControlName="age">
+                        <!-- Add validation messages here if needed -->
+                    </div>
+                    <div class="form-group">
+                        <label for="gender">Gender</label>
+                        <select formControlName="gender" id="gender" name="gender">
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="name-fields">
+                    <div class="form-group" style="margin-right: 15px;">
+                        <label for="phoneNumber">Phone Number</label>
+                        <input type="number" id="phoneNumber" formControlName="phoneNumber">
+                        <!-- Add validation messages here if needed -->
+                    </div>
+                    <div class="form-group">
+                        <label for="meterID">Meter ID</label>
+                        <input type="text" id="meterID" formControlName="meterID">
+                        <!-- Add validation messages here if needed -->
+                    </div>
+                </div>
+            </div>
+            <!-- <div class="form-group">
+                <div class="form-group">
+                    <label for="password">Current Password</label>
+                    <input type="password" id="password" formControlName="password">
+                </div>
+                <div class="name-fields">
+                    <div class="form-group" style="margin-right: 15px;">
+                        <label for="newPassword">New Password</label>
+                        <input type="password" id="newPassword" formControlName="newPassword">
+                    </div>
+                    <div class="form-group">
+                        <label for="confirmPassword">Confirm New Password</label>
+                        <input type="password" id="confirmPassword" formControlName="confirmPassword">
+                    </div>
+                </div>
+            </div> -->
+            <button type="submit">Save Changes</button>
+        </form>
+    </div>  
+</div>
+<app-footer></app-footer>

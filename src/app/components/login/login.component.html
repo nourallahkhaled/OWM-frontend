@@ -9,45 +9,43 @@
         <h1>Start Controlling your Water</h1>
         <h3>Sign In to access the OWM Application</h3>
         <form [formGroup]="loginForm" (ngSubmit)="loginUser()">
-            <p-card [style]="{ width: '360px' }">
-                <div class="field form-group">
-                    <label for="email">Email</label>
-                    <input
-                    type="text"
-                    pInputText
-                    formControlName="email"
-                    class="w-full"
-                    name="email"
-                    placeholder="Type your email"
-                    />
-                    <small
-                    *ngIf="email.invalid && (email.dirty || email.touched)"
-                    class="block p-error"
-                    >
-                    <div *ngIf="email.errors?.['required']">Email is required.</div>
-                    <div *ngIf="email.errors?.['email']">Email should be valid</div>
-                    </small>
-                </div>
-                <div class="field form-group">
-                    <label for="password">Password</label>
-                    <input
-                    type="password"
-                    pInputText
-                    formControlName="password"
-                    class="w-full"
-                    name="password"
-                    placeholder="Type your password"
-                    />
-                    <small
-                    *ngIf="password.invalid && (password.dirty || password.touched)"
-                    class="block p-error"
-                    >
-                    <div *ngIf="password.errors?.['required']">Password is required.</div>
-                    </small>
-                </div>
-                <button type="submit"  [disabled]="loginForm.invalid">Login</button>
-                <p class="register-link">Don't have an account? <a href="/register">Register Here</a></p>
-            </p-card>
+            <div class="field form-group">
+                <label for="email">Email</label>
+                <input
+                type="text"
+                pInputText
+                formControlName="email"
+                class="w-full"
+                name="email"
+                placeholder="Type your email"
+                />
+                <small
+                *ngIf="email.invalid && (email.dirty || email.touched)"
+                class="block p-error"
+                >
+                <div *ngIf="email.errors?.['required']">Email is required.</div>
+                <div *ngIf="email.errors?.['email']">Email should be valid</div>
+                </small>
+            </div>
+            <div class="field form-group">
+                <label for="password">Password</label>
+                <input
+                type="password"
+                pInputText
+                formControlName="password"
+                class="w-full"
+                name="password"
+                placeholder="Type your password"
+                />
+                <small
+                *ngIf="password.invalid && (password.dirty || password.touched)"
+                class="block p-error"
+                >
+                <div *ngIf="password.errors?.['required']">Password is required.</div>
+                </small>
+            </div>
+            <button type="submit"  [disabled]="loginForm.invalid">Login</button>
+            <p class="register-link">Don't have an account? <a href="/register">Register Here</a></p>
         </form>
     </div>
 </div>

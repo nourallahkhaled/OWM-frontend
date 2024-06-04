@@ -1,0 +1,46 @@
+.container{
+    padding: 30px;
+    height: 100vh;
+}
+.users-container,.admins-container{
+    padding: 30px;
+    margin-bottom: 20px;
+}
+.newProduct-btn{
+    background-color: var(--dark-blue);
+    border: 0;
+    color: var(--beige);
+    margin-left: 45%;
+    margin-bottom: 10px;
+    font-weight: bold;
+    font-size: 16px;
+    padding: 15px;
+    border-radius: 5px;
+}
+table{
+    border: 2px solid var(--dark-blue);
+
+}
+th{
+    background-color: var(--dark-blue) !important;
+    color: white;
+}
+.edit-icon{
+    color: rgb(0, 115, 255);
+}
+.delete-icon{
+    color: rgb(180, 18, 18);
+}
+h1{
+    font-weight: bold;
+    font-size: 26px;
+    padding: 30px;
+    background-color: #F7EEDD;
+    color: var(--dark-blue);
+    text-align: center;
+}
+h2{
+    color: var(--dark-blue);
+    font-size: 22px;
+    font-weight: bold;
+}
