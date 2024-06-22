@@ -61,7 +61,7 @@ export class EditUserFormComponent {
           age: adminData.age,
           gender: adminData.gender,
           phoneNumber: adminData.phoneNumber,
-          meterID: adminData.meterID,
+          meterIDs: adminData.meterIDs,
           role: adminData.role
         });
       }

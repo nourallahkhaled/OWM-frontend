@@ -9,7 +9,7 @@ export interface User {
     address?: string;
     apartmentNo?: string;
     role?: string;
-    meterID?: string;
+    meterIDs?: string[];
     gender: string;
     phoneNumber?: string;
 }

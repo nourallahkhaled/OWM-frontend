@@ -13,7 +13,7 @@ export class UsersTableComponent {
   users: User[] = []; 
   adminUsers: User[] = []; 
   nonAdminUsers: User[] = []; 
-  metersID = []; 
+  metersIDs = []; 
   displayedColumns: string[] = ['username', 'email', 'address', 'age', 'gender','meterID', 'actions'];
 
   constructor(private authService: AuthService, private router: Router) {}
@@ -27,7 +27,7 @@ export class UsersTableComponent {
       this.users = data
       this.adminUsers = this.users.filter(user => user.role === 'admin');
       this.nonAdminUsers = this.users.filter(user => user.role !== 'admin');
-      this.metersID = this.users.filter(user => user.meterID !== null);
+      this.metersIDs = this.users.filter(user => user.meterIDs !== null);
     });
   }
 

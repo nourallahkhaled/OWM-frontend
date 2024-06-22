@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { AfterViewInit, Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 
@@ -7,7 +7,7 @@ import { AuthService } from 'src/app/services/auth.service';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css']
 })
-export class HeaderComponent {
+export class HeaderComponent implements AfterViewInit {
 
   loggedIn: boolean = false;
   isAdmin: boolean = false;
@@ -26,6 +26,14 @@ export class HeaderComponent {
         const role = sessionStorage.getItem('role');
         this.isAdmin = role === 'admin';
       }
+    });
+  }
+  ngAfterViewInit() {
+    // Initialize Bootstrap navbar toggler
+    const navbarToggler = document.querySelector('.navbar-toggler');
+    const collapse = document.querySelector('.navbar-collapse');
+    navbarToggler.addEventListener('click', function () {
+      collapse.classList.toggle('show');
     });
   }
 

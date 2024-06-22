@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, FormArray, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 import { User } from 'src/app/interfaces/auth';
@@ -16,15 +16,19 @@ export class ProfileComponent implements OnInit {
   profileForm: FormGroup;
   editMode: boolean = false;
   userId: string;
+  selectDevice: boolean = false;
+  addDevice: boolean = false;
+  newMeterID: string = '';
+  selectedMeterID: string | null = null;
 
   constructor(
     private authService: AuthService,
     private fb: FormBuilder,
-    private route: ActivatedRoute, 
+    private route: ActivatedRoute,
     private router: Router,
     private snackBar: MatSnackBar,
   ) { 
-    
+
     // Initialize profile form
     this.profileForm = this.fb.group({
       firstName: ['', Validators.required],
@@ -35,10 +39,7 @@ export class ProfileComponent implements OnInit {
       gender: ['', Validators.required],
       apartmentNo: ['', Validators.required],
       phoneNumber: ['', Validators.required],
-      meterID: ['', Validators.required],
-      // password: ['', Validators.required],
-      // newPassword: [''],
-      // confirmPassword: [''],
+      meterIDs: this.fb.array([], Validators.required), 
       address: ['', Validators.required],
       // Add more form controls as needed
     });
@@ -49,9 +50,8 @@ export class ProfileComponent implements OnInit {
     console.log(this.userId)
     // Fetch user data when component initializes
     this.authService.getUserById(this.userId).subscribe(
-      (userData: any ) => {
+      (userData: any) => {
         this.user = userData[0];
-        console.log('userdata',userData);
         // Initialize form with user data
         this.profileForm.patchValue({
           firstName: this.user.firstName,
@@ -62,18 +62,31 @@ export class ProfileComponent implements OnInit {
           gender: this.user.gender,
           apartmentNo: this.user.apartmentNo,
           phoneNumber: this.user.phoneNumber,
-          meterID: this.user.meterID,
-          // password: this.user.password,
           address: this.user.address,
         });
+        this.selectMeter(this.user.meterIDs[0])
+
+        // Initialize meterIDs FormArray
+        this.setMeterIDs(this.user.meterIDs);
       },
       error => {
         console.error('Error fetching user data:', error);
       }
     );
-
   }
-  editModeOn(){
+
+  get meterIDs(): FormArray {
+    return this.profileForm.get('meterIDs') as FormArray;
+  }
+
+  setMeterIDs(meterIDs: string[]) {
+    const meterIDsFormArray = this.profileForm.get('meterIDs') as FormArray;
+    meterIDs.forEach(meterID => {
+      meterIDsFormArray.push(this.fb.control(meterID, Validators.required));
+    });
+  }
+
+  editModeOn() {
     this.editMode = true;
   }
 
@@ -81,7 +94,7 @@ export class ProfileComponent implements OnInit {
   updateProfile() {
     if (this.profileForm.valid) {
       const updatedUserData: User = { ...this.user, ...this.profileForm.value };
-      this.authService.editUser('6d3d',updatedUserData).subscribe(
+      this.authService.editUser(this.userId, updatedUserData).subscribe(
         response => {
           window.location.reload()
           this.snackBar.open('Updated Successfully.', 'Close', {
@@ -101,4 +114,26 @@ export class ProfileComponent implements OnInit {
     }
   }
 
+  selectAddNewMeter() {
+    this.selectDevice = true;
+  }
+
+  openNewMeterField(){
+    this.addDevice = true;
+  }
+
+  addNewMeter() {
+    // Ensure newMeterID is not empty
+    if (this.newMeterID.trim() !== '') {
+      // Add newMeterID to the meterIDs FormArray
+      this.meterIDs.push(this.fb.control(this.newMeterID, Validators.required));
+      this.updateProfile() 
+      this.newMeterID = '';
+    }
+  }
+  selectMeter(meterID: string) {
+    this.selectedMeterID = this.selectedMeterID === meterID ? null : meterID;
+    console.log(this.selectedMeterID)
+  }
+  
 }

@@ -42,7 +42,9 @@ input {
     background-color: #ffffff;
     color: #008DDA;
 }
-
+.new-meterID{
+    margin-top: 10px;
+}
 button[type="submit"] {
     padding: 10px 20px;
     border: none;
@@ -115,4 +117,56 @@ select{
     outline: none;
     border: 1px solid #008DDA;
     color: #008DDA;
+}
+::ng-deep .mat-mdc-tab .mdc-tab-indicator__content--underline {
+    border-color: #41C9E2 !important;
+}
+::ng-deep .mat-mdc-tab.mdc-tab--active .mdc-tab__text-label {
+    color: var(--dark-blue) !important;
+    font-size: 16px !important;
+    font-weight: bold !important;
+}
+::ng-deep .mat-mdc-tab .mdc-tab__text-label {
+    color: #000 !important;
+    font-size: 16px !important;
+    font-weight: bold !important;
+}
+.meter-cards-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px; /* space between cards */
+}
+
+.meter-card {
+    flex: 1 1 calc(33.333% - 16px); /* 3 cards per row with spacing */
+    background-color: #f8f8f8;
+    padding: 16px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 16px;
+}
+.meter-card-content {
+    display: flex;
+    align-items: center;
+}
+
+.meter-card p {
+    margin: 0;
+    font-size: 14px;
+}
+.meter-card.selected {
+    border-color: var(--dark-blue);
+}
+
+::ng-deep .mdc-checkbox .mdc-checkbox__native-control:enabled:checked~.mdc-checkbox__background, .mdc-checkbox .mdc-checkbox__native-control:enabled:indeterminate~.mdc-checkbox__background, .mdc-checkbox .mdc-checkbox__native-control[data-indeterminate=true]:enabled~.mdc-checkbox__background {
+    border: 1px solid #008DDA !important;
+    background-color: var(--dark-blue) !important;
+    border-radius: 15px;
+    padding: 5px !important;
+
+}
+::ng-deep .mdc-checkbox .mdc-checkbox__native-control:enabled:not(:checked):not(:indeterminate):not([data-indeterminate=true])~.mdc-checkbox__background {
+    border-radius: 15px;
+    padding: 5px !important;
 }

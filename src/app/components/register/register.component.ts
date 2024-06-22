@@ -25,7 +25,7 @@ export class RegisterComponent {
     phoneNumber: [''],
     address: [''],
     apartmentNo: [''],
-    meterID: [''],
+    meterIDs: [[]],
     role:['user']
   }, {
     validators: passwordMatchValidator
