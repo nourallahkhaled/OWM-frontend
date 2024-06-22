@@ -6,9 +6,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./contact.component.css']
 })
 export class ContactComponent {
-  name;
-  email;
-  message;
+  name: string;
+  email: string;
+  phone: number;
+  message: string;
   constructor(){}
   ngOnInit(){}
   submitForm(){

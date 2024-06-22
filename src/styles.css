@@ -4,6 +4,8 @@
     --light-blue: #ACE2E1; 
     --beige: #F7EEDD; 
 }
+@import '~bootstrap/dist/css/bootstrap.min.css';
+
 
 *{
     margin: 0px;
