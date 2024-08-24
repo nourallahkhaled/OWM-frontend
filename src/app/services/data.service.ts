@@ -51,6 +51,13 @@ export class DataService {
         });
         return this.http.post<any>(url, meterID, { headers });
     }
+    getBill():Observable<any> {
+        const url = `${this.baseUrl}/user/payment`;
+        const headers = new HttpHeaders({
+            'Authorization': `Bearer ${this.token}`
+        });
+        return this.http.get<any>(url, { headers });
+    }
 
 
 }

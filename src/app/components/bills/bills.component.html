@@ -1,1 +1,25 @@
-<p>bills works!</p>
+<app-header></app-header>
+<section class="header">
+    <h1>Pay Your Bills</h1>
+    <img src="../../../assets/images/cash.png" alt="">
+
+</section>
+
+<section class="section">
+    <div class="container">
+        <div class="getin-touch">
+            <h2>Pay Your Water Bill Now!</h2>
+            <span class="separator"></span>
+            <br>
+            <h3>Your Bill for {{currentMonth}} is <span class="money">{{money}}</span> EGP.</h3>
+            <br>
+            <button type="submit">Checkout</button>
+        </div>
+        <div>
+            <div>
+                <img src="../../assets/images/pay.svg" style="width: 400px;height: 300px;" alt="">
+            </div>
+        </div>
+    </div>
+</section>
+<app-footer></app-footer>

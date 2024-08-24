@@ -9,11 +9,12 @@
                 <ul class="navbar-nav">
                     <li class="nav-item"><a class="nav-link" routerLink="/">Home</a></li>
                     <li class="nav-item"><a class="nav-link" routerLink="/about">About</a></li>
-                    <li class="nav-item" *ngIf="loggedIn"><a class="nav-link" routerLink="/consumption">Consumption</a></li>
-                    <li class="nav-item" *ngIf="loggedIn"><a class="nav-link" routerLink="/leakage">Leakage</a></li>
-                    <li class="nav-item" *ngIf="loggedIn"><a class="nav-link" routerLink="/profile/{{userId}}">Profile</a></li>
+                    <li class="nav-item" *ngIf="loggedIn && isAdmin"><a class="nav-link" routerLink="/consumption">Consumption</a></li>
+                    <li class="nav-item" *ngIf="loggedIn && isAdmin"><a class="nav-link" routerLink="/leakage">Leakage</a></li>
+                    <li class="nav-item" *ngIf="loggedIn && isAdmin"><a class="nav-link" routerLink="/profile/{{userId}}">Profile</a></li>
                     <li class="nav-item"><a class="nav-link" routerLink="/contact-us">Contact Us</a></li>
                     <li class="nav-item" *ngIf="loggedIn && isAdmin"><a class="nav-link" routerLink="/users">Dashboard</a></li>
+                    <li class="nav-item" *ngIf="loggedIn && isAdmin"><a class="nav-link" routerLink="/bills">Payment</a></li>
                     <li class="nav-item" *ngIf="!loggedIn"><a class="nav-link" routerLink="/register">Register</a></li>
                     <li class="nav-item" *ngIf="!loggedIn"><a class="nav-link" routerLink="/login">Login</a></li>
                     <li class="nav-item" *ngIf="loggedIn"><a class="nav-link" (click)="logoutUser()">Logout</a></li>
