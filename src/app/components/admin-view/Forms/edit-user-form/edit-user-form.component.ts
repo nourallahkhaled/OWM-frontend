@@ -16,52 +16,56 @@ export class EditUserFormComponent {
   constructor(
     private fb: FormBuilder, 
     private userService: AuthService, 
-    private route: ActivatedRoute, 
+    private route: ActivatedRoute,
     private router: Router) {}
 
   ngOnInit() {
     this.adminId = this.route.snapshot.paramMap.get('id');
+    console.log(this.adminId)
     this.isEditing = !!this.adminId;
+    console.log('this.isEditing', this.isEditing);
 
 
     this.adminForm = this.fb.group({
+      userId: ['',Validators.required],
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
-      username: ['', Validators.required],
+      userName: ['', Validators.required],
       email: ['', Validators.required],
       password: ['', Validators.required],
       address: ['', Validators.required],
-      apartmentNo: ['', Validators.required],
+      apartmentNumber: ['', Validators.required],
       age: ['', Validators.required],
       gender: ['', Validators.required],
       phoneNumber: ['', Validators.required],
-      meterID: ['', Validators.required],
+      // meterIDs: ['', Validators.required],
       role:['admin']
     });
 
     if (this.isEditing) {
-      this.initializeFormForEdit(this.adminId);
+      this.initializeFormForEdit();
     }
   }
 
-  initializeFormForEdit(adminId: string) {
+  initializeFormForEdit() {
     // Fetch product details by ID and set the form values
-    this.userService.getUserById(adminId).subscribe((admin) => {
-      if (admin && admin.length > 0) {
-        const adminData = admin[0]; // Assuming it's an array with a single admin
+    this.userService.getUserDataById(this.adminId).subscribe((admin) => {
+      if (admin) {
+        const adminData = admin.user; 
         console.log('adminData', adminData)
         this.adminForm.setValue({
+          userId: adminData._id,
           firstName: adminData.firstName,
           lastName: adminData.lastName,
-          username: adminData.username,
+          userName: adminData.userName,
           email: adminData.email,
           password: adminData.password,
           address: adminData.address,
-          apartmentNo: adminData.apartmentNo,
+          apartmentNumber: adminData.apartmentNumber,
           age: adminData.age,
           gender: adminData.gender,
           phoneNumber: adminData.phoneNumber,
-          meterIDs: adminData.meterIDs,
+          // meterIDs: adminData.meters[0],
           role: adminData.role
         });
       }
@@ -71,15 +75,16 @@ export class EditUserFormComponent {
 
   submitAdmin() {
     const formData = this.adminForm.value;
+    console.log(formData);
 
     if (this.isEditing) {
       // Handle editing logic here
-      this.userService.editAdmin(this.adminId, formData).subscribe(() => {
+      this.userService.editUserDataById(formData).subscribe(() => {
         this.router.navigate(['/users']); 
       });
   }
     else{
-      this.userService.registerUser(formData).subscribe(() => {
+      this.userService.addAdmin(formData).subscribe(() => {
         this.router.navigate(['/users']); 
       });
     }

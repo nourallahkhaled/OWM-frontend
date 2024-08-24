@@ -33,41 +33,43 @@ export class ProfileComponent implements OnInit {
     this.profileForm = this.fb.group({
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
-      username: ['', Validators.required],
+      userName: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       age: ['', Validators.required],
       gender: ['', Validators.required],
-      apartmentNo: ['', Validators.required],
+      password: ['', Validators.required],
+      apartmentNumber: ['', Validators.required],
       phoneNumber: ['', Validators.required],
-      meterIDs: this.fb.array([], Validators.required), 
+      meters: this.fb.array([], Validators.required), 
       address: ['', Validators.required],
       // Add more form controls as needed
     });
   }
 
   ngOnInit(): void {
-    this.userId = this.route.snapshot.paramMap.get('id');
+    this.userId = localStorage.getItem('userId');
     console.log(this.userId)
     // Fetch user data when component initializes
-    this.authService.getUserById(this.userId).subscribe(
+    this.authService.getUserData().subscribe(
       (userData: any) => {
-        this.user = userData[0];
+        console.log(userData)
+        this.user = userData;
         // Initialize form with user data
         this.profileForm.patchValue({
           firstName: this.user.firstName,
           lastName: this.user.lastName,
-          username: this.user.username,
+          userName: this.user.userName,
           email: this.user.email,
           age: this.user.age,
           gender: this.user.gender,
-          apartmentNo: this.user.apartmentNo,
+          apartmentNumber: this.user.apartmentNumber,
           phoneNumber: this.user.phoneNumber,
           address: this.user.address,
         });
-        this.selectMeter(this.user.meterIDs[0])
+        this.selectMeter(this.user.meters[0])
 
-        // Initialize meterIDs FormArray
-        this.setMeterIDs(this.user.meterIDs);
+        // Initialize meters FormArray
+        this.setMeterIDs(this.user.meters);
       },
       error => {
         console.error('Error fetching user data:', error);
@@ -75,13 +77,13 @@ export class ProfileComponent implements OnInit {
     );
   }
 
-  get meterIDs(): FormArray {
-    return this.profileForm.get('meterIDs') as FormArray;
+  get meters(): FormArray {
+    return this.profileForm.get('meters') as FormArray;
   }
 
-  setMeterIDs(meterIDs: string[]) {
-    const meterIDsFormArray = this.profileForm.get('meterIDs') as FormArray;
-    meterIDs.forEach(meterID => {
+  setMeterIDs(meters: string[]) {
+    const meterIDsFormArray = this.profileForm.get('meters') as FormArray;
+    meters.forEach(meterID => {
       meterIDsFormArray.push(this.fb.control(meterID, Validators.required));
     });
   }
@@ -92,10 +94,26 @@ export class ProfileComponent implements OnInit {
 
   // Method to update user data
   updateProfile() {
-    if (this.profileForm.valid) {
-      const updatedUserData: User = { ...this.user, ...this.profileForm.value };
-      this.authService.editUser(this.userId, updatedUserData).subscribe(
+      // const updatedUserData: User = { ...this.user, ...this.profileForm.value };
+      const updatedUserData: any = {
+        userId: this.userId, // Assuming _id is available in this.user
+        firstName: this.profileForm.value.firstName,
+        lastName: this.profileForm.value.lastName,
+        email: this.profileForm.value.email,
+        // password: this.user.password, // Assuming you do not update password via this form
+        userName: this.profileForm.value.userName,
+        phoneNumber: this.profileForm.value.phoneNumber,
+        address: this.profileForm.value.address,
+        apartmentNumber: this.profileForm.value.apartmentNumber.toString(),
+        age: this.profileForm.value.age.toString(),
+        // Add more fields as needed
+      };
+      console.log(updatedUserData);
+
+      
+      this.authService.editUser(updatedUserData).subscribe(
         response => {
+          console.log(response)
           window.location.reload()
           this.snackBar.open('Updated Successfully.', 'Close', {
             duration: 3000,
@@ -108,10 +126,10 @@ export class ProfileComponent implements OnInit {
           });
         }
       );
-    } else {
-      // Form is invalid, show validation errors
-      // Optionally, you can mark the form controls as touched or dirty to trigger validation messages
-    }
+    // } else {
+    //   // Form is invalid, show validation errors
+    //   // Optionally, you can mark the form controls as touched or dirty to trigger validation messages
+    // }
   }
 
   selectAddNewMeter() {
@@ -125,8 +143,8 @@ export class ProfileComponent implements OnInit {
   addNewMeter() {
     // Ensure newMeterID is not empty
     if (this.newMeterID.trim() !== '') {
-      // Add newMeterID to the meterIDs FormArray
-      this.meterIDs.push(this.fb.control(this.newMeterID, Validators.required));
+      // Add newMeterID to the meters FormArray
+      this.meters.push(this.fb.control(this.newMeterID, Validators.required));
       this.updateProfile() 
       this.newMeterID = '';
     }

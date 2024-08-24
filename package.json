@@ -25,6 +25,7 @@
     "d3": "^7.9.0",
     "d3-ng2-service": "^2.2.0",
     "date-fns": "^3.6.0",
+    "ngx-cookie-service": "^18.0.0",
     "primeicons": "^7.0.0",
     "primeng": "^17.17.0",
     "rxjs": "~7.8.0",

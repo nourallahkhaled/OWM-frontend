@@ -20,12 +20,12 @@
                         <p><strong>Last Name:</strong> {{ user?.lastName }}</p>
                     </div>
                     <div class="profile-row">
-                        <p><strong>Username:</strong> {{ user?.username }}</p>
+                        <p><strong>Username:</strong> {{ user?.userName }}</p>
                         <p><strong>Email:</strong> {{ user?.email }}</p>
                     </div>
                     <div class="profile-row">
                         <p><strong>Address:</strong> {{ user?.address }}</p>
-                        <p><strong>Apartment No.:</strong> {{ user?.apartmentNo }}</p>
+                        <p><strong>Apartment No.:</strong> {{ user?.apartmentNumber }}</p>
                     </div>
                     <div class="profile-row">
                         <p><strong>Age:</strong> {{ user?.age }}</p>
@@ -33,11 +33,11 @@
                     </div>
                     <div class="profile-row">
                         <p><strong>Phone Number:</strong> {{ user?.phoneNumber }}</p>
-                        <!-- <p><strong>Meter ID:</strong> {{ user?.meterIDs }}</p> -->
+                        <!-- <p><strong>Meter ID:</strong> {{ user?.meters }}</p> -->
                     </div>
-                    <div *ngFor="let meterID of user?.meterIDs; let i = index" class="profile-row">
+                    <!-- <div *ngFor="let meterID of user?.meterIDs; let i = index" class="profile-row">
                         <p><strong>Meter {{ i + 1 }} ID:</strong> {{ meterID }}</p>
-                    </div>
+                    </div> -->
                     <button (click)="editModeOn()"><svg height="15px" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path fill="#f7eedd" d="M471.6 21.7c-21.9-21.9-57.3-21.9-79.2 0L362.3 51.7l97.9 97.9 30.1-30.1c21.9-21.9 21.9-57.3 0-79.2L471.6 21.7zm-299.2 220c-6.1 6.1-10.8 13.6-13.5 21.9l-29.6 88.8c-2.9 8.6-.6 18.1 5.8 24.6s15.9 8.7 24.6 5.8l88.8-29.6c8.2-2.7 15.7-7.4 21.9-13.5L437.7 172.3 339.7 74.3 172.4 241.7zM96 64C43 64 0 107 0 160V416c0 53 43 96 96 96H352c53 0 96-43 96-96V320c0-17.7-14.3-32-32-32s-32 14.3-32 32v96c0 17.7-14.3 32-32 32H96c-17.7 0-32-14.3-32-32V160c0-17.7 14.3-32 32-32h96c17.7 0 32-14.3 32-32s-14.3-32-32-32H96z"/></svg> 
                         Edit Profile</button>
                 </div>
@@ -64,8 +64,8 @@
                         <div class="form-group">
                             <div class="name-fields">
                                 <div class="form-group" style="margin-right: 15px;">
-                                    <label for="username">Username</label>
-                                    <input type="text" id="username" formControlName="username">
+                                    <label for="userName">Username</label>
+                                    <input type="text" id="userName" formControlName="userName">
                                     <!-- Add validation messages here if needed -->
                                 </div>
                                 <div class="form-group">
@@ -83,8 +83,8 @@
                                     <!-- Add validation messages here if needed -->
                                 </div>
                                 <div class="form-group">
-                                    <label for="apartmentNo">Apartment No</label>
-                                    <input type="text" id="apartmentNo" formControlName="apartmentNo">
+                                    <label for="apartmentNumber">Apartment No</label>
+                                    <input type="text" id="apartmentNumber" formControlName="apartmentNumber">
                                     <!-- Add validation messages here if needed -->
                                 </div>
                             </div>
@@ -108,18 +108,22 @@
                         </div>
                         <div class="form-group">
                             <div class="name-fields">
-                                <div class="form-group">
+                                <div class="form-group" style="margin-right: 15px;">
                                     <label for="phoneNumber">Phone Number</label>
                                     <input type="number" id="phoneNumber" formControlName="phoneNumber">
                                     <!-- Add validation messages here if needed -->
                                 </div>
+                                <!-- <div class="form-group">
+                                    <label for="password">Password</label>
+                                    <input type="password" id="password" formControlName="password">
+                                </div> -->
                             </div>
-                            <div class="name-fields" formArrayName="meterIDs">
+                            <!-- <div class="name-fields" formArrayName="meterIDs">
                                 <div class="form-group" *ngFor="let control of meterIDs.controls; let i = index" style="margin-right: 15px;">
                                     <label for="meterIDs">Meter {{i+1}} ID</label>
                                     <input type="text" [formControlName]="i">
                                 </div>
-                            </div>
+                            </div> -->
                         </div>
                         <button type="submit">Save Changes</button>
                     </form>
@@ -127,13 +131,13 @@
             </div>
         </mat-tab>
         <mat-tab label="Select/Add New Meter">
-            <!-- Select Device -->
+            <!-- Select/Add New Meter -->
             <div class="container">
                 <div class="profile">
                     <div class="show-devices">
                         <h2>{{ user?.firstName }}'s Devices</h2>
                         <div class="meter-cards-container">
-                            <div *ngFor="let meterID of user?.meterIDs; let i = index" 
+                            <div *ngFor="let meterID of user?.meters; let i = index" 
                                 [ngClass]="{'meter-card': true, 'selected': selectedMeterID === meterID}"
                                 (click)="selectMeter(meterID)">
                                 <div class="meter-card-content">

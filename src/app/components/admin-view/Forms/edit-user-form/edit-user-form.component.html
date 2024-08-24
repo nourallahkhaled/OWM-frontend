@@ -12,11 +12,15 @@
         </div>
         <div class="form-group">
             <label for="username">Username:</label>
-            <input type="text" id="username" formControlName="username" class="form-control">
+            <input type="text" id="username" formControlName="userName" class="form-control">
         </div>
         <div class="form-group">
             <label for="email">Email:</label>
             <input type="email" id="email" formControlName="email" class="form-control">
+        </div>
+        <div class="form-group" *ngIf="isEditing==false">
+            <label for="password">Password:</label>
+            <input type="password" id="password" formControlName="password" class="form-control">
         </div>
         <div class="form-group">
             <label for="address">Address:</label>
@@ -24,7 +28,7 @@
         </div>
         <div class="form-group">
             <label for="apartmentNo">Apartment No:</label>
-            <input type="number" id="apartmentNo" formControlName="apartmentNo" class="form-control">
+            <input type="number" id="apartmentNo" formControlName="apartmentNumber" class="form-control">
         </div>
         <div class="form-group">
             <label for="age">Age:</label><br>
@@ -37,10 +41,6 @@
         <div class="form-group">
             <label for="phoneNumber">Phone Number:</label>
             <input type="text" id="phoneNumber" formControlName="phoneNumber" class="form-control">
-        </div>
-        <div class="form-group">
-            <label for="meterID">Meter ID:</label>
-            <input type="text" id="meterID" formControlName="meterID" class="form-control">
         </div>
         <button type="submit" class="btn">
             {{ isEditing ? 'Update' : 'Add Admin' }}

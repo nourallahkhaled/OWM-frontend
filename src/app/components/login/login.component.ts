@@ -28,39 +28,19 @@ export class LoginComponent {
   get password() { return this.loginForm.controls['password']; }
 
   loginUser() {
-    const { email, password } = this.loginForm.value;
-    this.authService.getUserByEmail(email as string).subscribe({
-      next: (response) => {
-        if (response.length > 0 && response[0].password === password) {
-          this.authService.getUserRole(email as string).subscribe({
-            next: (user) => {
-            if(user){
-              const role = user.role
-              sessionStorage.setItem('email', email as string);
-              sessionStorage.setItem('role', role); 
-              sessionStorage.setItem('userId', response[0].id)
-              this.authService.login();
-              this.router.navigate(['/landing']);
-            }else{
-                this.snackBar.open('Error getting user role.', 'Close', {
-                  duration: 3000,
-                });
-            }
-          },
-          });
-        } else {
-          this.snackBar.open("Email or Password isn't correct.", 'Close', {
-            duration: 3000, 
-          });
-        }
+    const postData = { ...this.loginForm.value };
+    console.log(this.loginForm.value);
+    this.authService.loginUser(postData).subscribe(
+      response => {
+        console.log(response)
+        this.authService.handleLoginResponse(response);
+        this.router.navigate(['landing']);
       },
-      error: (e) => {
-        this.snackBar.open('Something Went wrong!', 'Close', {
-          duration: 3000, 
+      error => {
+        this.snackBar.open('Something went wrong.', 'Close', {
+          duration: 3000,
         });
-      }
-    
-  })
+      })
   }
 
 }

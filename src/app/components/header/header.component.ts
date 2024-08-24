@@ -15,19 +15,17 @@ export class HeaderComponent implements AfterViewInit {
 
   constructor(
     private authService: AuthService,
-    private router: Router
-  ) {}
-
-  ngOnInit() {
-    this.authService.isLoggedIn.subscribe((status) => {
-      this.loggedIn = status;
-      if (status) {
-        this.userId = sessionStorage.getItem('userId');
-        const role = sessionStorage.getItem('role');
-        this.isAdmin = role === 'admin';
-      }
-    });
+    private router: Router,
+    
+  ) {
+    if(localStorage.getItem('token')){
+      this.loggedIn = true;
+    }
+    if(localStorage.getItem('role') == 'admin'){
+      this.isAdmin = true;
+    }
   }
+
   ngAfterViewInit() {
     // Initialize Bootstrap navbar toggler
     const navbarToggler = document.querySelector('.navbar-toggler');
@@ -39,6 +37,8 @@ export class HeaderComponent implements AfterViewInit {
 
   logoutUser() {
     this.authService.logout();
+    this.loggedIn = false; 
+    this.isAdmin = false; 
     this.router.navigate(['/login']);
   }
 

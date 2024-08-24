@@ -16,7 +16,7 @@ export class RegisterComponent {
   registerForm = this.fb.group({
     firstName: ['', [Validators.required, Validators.pattern(/^[a-zA-Z]+(?: [a-zA-Z]+)*$/)]], 
     lastName: ['', [Validators.required, Validators.pattern(/^[a-zA-Z]+(?: [a-zA-Z]+)*$/)]],
-    username: ['', [Validators.required, Validators.pattern(/^[a-zA-Z]+(?: [a-zA-Z]+)*$/)]],
+    userName: ['', [Validators.required, Validators.pattern(/^[a-zA-Z]+(?: [a-zA-Z]+)*$/)]],
     email: ['', [Validators.required, Validators.email]],
     password: ['', Validators.required],
     confirmPassword: ['', Validators.required],
@@ -24,8 +24,7 @@ export class RegisterComponent {
     gender: ['', Validators.required],
     phoneNumber: [''],
     address: [''],
-    apartmentNo: [''],
-    meterIDs: [[]],
+    apartmentNumber: [''],
     role:['user']
   }, {
     validators: passwordMatchValidator
@@ -38,8 +37,8 @@ export class RegisterComponent {
     private snackBar: MatSnackBar,
   ) { }
 
-  get username() {
-    return this.registerForm.controls['username'];
+  get userName() {
+    return this.registerForm.controls['userName'];
   } 
   get firstName() {
     return this.registerForm.controls['firstName'];
@@ -67,17 +66,8 @@ export class RegisterComponent {
 
   submitDetails() {
     const postData = { ...this.registerForm.value };
-    console.log(this.registerForm.value);
-    console.log(postData);
     delete postData.confirmPassword;
-    this.authService.emailExists(postData.email).subscribe(
-      emailExists => {
-        if (emailExists) {
-          this.snackBar.open('Email already exists.', 'Close', {
-            duration: 3000,
-          });
-        } else {
-          this.authService.registerUser(postData as unknown as User).subscribe(
+    this.authService.registerUser(postData as unknown as User).subscribe(
             response => {
               this.snackBar.open('Registered Successfully.', 'Close', {
                 duration: 3000,
@@ -85,18 +75,17 @@ export class RegisterComponent {
               this.router.navigate(['login']);
             },
             error => {
-              this.snackBar.open('Something went wrong.', 'Close', {
-                duration: 3000,
-              });
+              console.log(error.status)
+              if(error.status === 0){
+                this.snackBar.open('Email Already Exist.', 'Close', {
+                  duration: 3000,
+                });
+              }else{
+                this.snackBar.open('Something went wrong.', 'Close', {
+                  duration: 3000,
+                });
+              }
             }
-          );
-        }
-      },
-      error => {
-        this.snackBar.open('Something went wrong.', 'Close', {
-          duration: 3000,
-        });
-      }
     );
   }
 
