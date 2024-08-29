@@ -44,3 +44,7 @@ h2{
     font-size: 22px;
     font-weight: bold;
 }
+.table-responsive{
+    overflow-x: auto; /* Enable horizontal scrolling */
+    -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+}

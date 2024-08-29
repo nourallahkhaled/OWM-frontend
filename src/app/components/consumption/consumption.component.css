@@ -1,6 +1,18 @@
 .header{
     text-align: center;
 }
+.header img {
+    max-width: 100%; 
+    height: auto;    
+    display: block;  
+    margin: 0 auto;  
+}
+
+@media (max-width: 768px) {
+    .header img {
+        width: 80%; 
+    }
+}
 h1{
     font-weight: bold;
     font-size: 26px;
@@ -17,14 +29,17 @@ h1{
     color: var(--dark-blue);
     padding: 100px;
 }
+
 .charts-container {
     display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
 }
 
 .chart {
-    flex: 1;
-    margin-right: 20px; /* Adjust spacing between charts */
-    overflow: hidden;
+    flex: 1 1 100%;
+    max-width: 100%;
 }
 .box-container{
     padding: 10px 100px;
@@ -36,4 +51,27 @@ button{
     margin-bottom: 20px;
     width: 200px;
     height: 50px;
+}
+.responsive-chart{
+    overflow-x: auto; 
+    -webkit-overflow-scrolling: touch; 
+}
+
+/* Responsive styles for different screen sizes */
+@media (min-width: 600px) {
+    .chart {
+        flex: 1 1 48%;
+    }
+}
+
+@media (min-width: 900px) {
+    .chart {
+        flex: 1 1 30%;
+    }
+}
+
+@media (min-width: 1200px) {
+    .chart {
+        flex: 1 1 30%;
+    }
 }

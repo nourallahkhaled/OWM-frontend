@@ -8,8 +8,10 @@ h1{
     background-color: #F7EEDD;
     color: var(--dark-blue);
 }
-img{
-    height: 500px;
+.header img {
+    height: 500px;    
+    display: block;  
+    margin: 0 auto;  
 }
 form {
     display: flex;
@@ -21,11 +23,6 @@ form {
 
 .name-fields {
     display: flex;
-}
-
-.form-group {
-    margin-bottom: 20px;
-    flex: 1;
 }
 
 label {
@@ -46,7 +43,7 @@ input {
     margin-top: 10px;
 }
 button[type="submit"] {
-    padding: 10px 20px;
+    padding: 0.5rem 1rem;
     border: none;
     border-radius: 5px;
     background-color: #008DDA;
@@ -91,7 +88,7 @@ button[type="submit"]:hover {
 button {
     background-color: #008DDA;
     color: #ffffff;
-    padding: 10px;
+    padding: 0.5rem 1rem;
     border: none;
     border-radius: 4px;
     cursor: pointer;
@@ -169,4 +166,98 @@ select{
 ::ng-deep .mdc-checkbox .mdc-checkbox__native-control:enabled:not(:checked):not(:indeterminate):not([data-indeterminate=true])~.mdc-checkbox__background {
     border-radius: 15px;
     padding: 5px !important;
+}
+/* General styles for the layout */
+.header {
+    text-align: center;
+    padding: 1rem;
+}
+
+.header h1 {
+    font-size: 1.5rem;
+}
+
+.user-data-container,
+.container {
+    padding: 1rem;
+}
+
+/* Profile Section */
+.profile {
+    margin: 0 auto;
+    max-width: 800px;
+    padding: 1rem;
+}
+
+.profile-row {
+    margin-bottom: 0.5rem;
+}
+
+/* Form Styles */
+.form-group {
+    margin-bottom: 1rem;
+    flex: 1;
+}
+
+.name-fields {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+input,
+select {
+    width: 100%;
+    padding: 0.5rem;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+}
+.required-asterisk {
+    color: red;
+    font-size: 14px;
+    margin-left: 4px;
+}
+button.disabled,
+button:disabled {
+    background-color: #ccc; /* Pale color */
+    color: #2a458a; 
+    cursor: not-allowed;
+    border: 1px solid #ccc;
+}
+button.disabled,
+button:disabled:hover {
+    background-color: #cfbfbf; /* Pale color */
+    color: #2a458a; 
+    cursor: not-allowed;
+    border: 1px solid #ccc;
+}
+/* Responsive Styles */
+@media (min-width: 600px) {
+    .profile-row {
+        display: flex;
+        justify-content: space-between;
+    }
+}
+
+@media (min-width: 768px) {
+    .name-fields .form-group {
+        margin-right: 1rem;
+    }
+}
+
+@media (min-width: 1024px) {
+    .profile-row {
+        display: flex;
+        flex-direction: row;
+    }
+}
+
+@media (max-width: 768px) {
+    .header img {
+        width: 80%; 
+    }
 }
