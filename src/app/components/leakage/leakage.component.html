@@ -10,13 +10,13 @@
     <div class="leakage-container">
         <img src="../../../assets/images/water-pipe.png" alt="">
         <div>
-            <p>No Leakage Detected Until 19/03/2024 12:35 PM</p>
-            <button onclick="leakageDetectionClicked()">Detect Leakage</button>  
+            <p>{{leakageMessage}}</p>
+            <p *ngIf="!leakageMessage">No Leakage Detected on Your Meter</p>
         </div>
     </div>
 </section>
 
-<section>
+<!-- <section>
     <h2 class="motor-valve-title">Motor Valve</h2>
     <div class="motor-valve-container">
         <img src="../../../assets/images/valve.png" alt="">
@@ -31,6 +31,6 @@
             <button (click)="motorStatusDetectionClicked()">Check Motor Valve Status</button>  
         </div>
     </div>
-</section>
+</section> -->
 
 <app-footer></app-footer>

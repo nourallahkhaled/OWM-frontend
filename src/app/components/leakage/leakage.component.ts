@@ -2,6 +2,9 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { PopupComponent } from '../popup/popup.component';
 import mqtt, { MqttClient } from 'mqtt';
+import { DataService } from 'src/app/services/data.service';
+import { AuthService } from 'src/app/services/auth.service';
+import { User } from 'src/app/interfaces/auth';
 
 @Component({
   selector: 'app-leakage',
@@ -11,13 +14,33 @@ import mqtt, { MqttClient } from 'mqtt';
 export class LeakageComponent implements OnInit, OnDestroy {
 
   isMotorValveOpened: boolean = false;
+  user: User | undefined;
   userId: string | null = null;
   private mqttClient: MqttClient | undefined;
+  selectedMeterID: string | null = null;
+  leakageMessage = ''
 
-  constructor(public dialog: MatDialog) {}
+  constructor(public dialog: MatDialog,
+    private dataService: DataService,
+    private authService: AuthService
+  ) {}
 
   ngOnInit(): void {
     this.userId = localStorage.getItem('userId');
+     // Fetch user data when component initializes
+    this.authService.getUserData().subscribe(
+      (userData: any) => {
+        this.user = userData;
+        this.selectedMeterID = this.user.meters[0];
+        
+        // Call methods that depend on selectedMeterID here
+        this.leakageDetectionClicked();
+      },
+      error => {
+        console.error('Error fetching user data:', error);
+        // Handle error as needed
+      }
+    );
     if (this.userId) {
       this.getLeakageData();
     } else {
@@ -50,11 +73,8 @@ export class LeakageComponent implements OnInit, OnDestroy {
 
 
 getLeakageData() {
-  // For TCP connection
-  // const brokerUrl = 'mqtt://owmmeter.com:1883';
-
-  // For WebSocket connection (example URL)
-  const brokerUrl = 'ws://owmmeter.com:8083/mqtt';
+  // For WebSocket connection
+  const brokerUrl = 'ws://owmmeter.com:9001/mqtt';
 
   this.mqttClient = mqtt.connect(brokerUrl);
 
@@ -75,7 +95,8 @@ getLeakageData() {
   });
 
   this.mqttClient.on('message', (topic, message) => {
-    console.log(`Received message on topic ${topic}: ${message.toString()}`);
+    // console.log(`Received message: ${message.toString()}`);
+    this.leakageMessage = message.toString();
   });
 
   this.mqttClient.on('error', (err) => {
@@ -90,5 +111,19 @@ getLeakageData() {
         console.log('MQTT client disconnected');
       });
     }
+  }
+
+  leakageDetectionClicked(){
+    const data: any = {
+      meterId: this.selectedMeterID, 
+      userId: this.userId
+    };
+    this.dataService.detectLeakage(data).subscribe(
+      response => {
+        console.log(response);
+      },
+      error => {
+      }
+    );
   }
 }

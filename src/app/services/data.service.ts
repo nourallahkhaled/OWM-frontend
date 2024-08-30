@@ -58,6 +58,12 @@ export class DataService {
         });
         return this.http.get<any>(url, { headers });
     }
-
+    detectLeakage(data){
+        const url = `${this.baseUrl}/meter/leakage-detected`
+        const headers = new HttpHeaders({
+            'Authorization': `Bearer ${this.token}`
+        });
+        return this.http.post<any>(url, data, { headers });
+    }
 
 }
