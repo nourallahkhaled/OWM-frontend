@@ -134,10 +134,7 @@ export class AuthService {
     });
     return this.http.post(url, userDetails, { headers });
 }
-  // editAdmin(id: string, userDetails: User): Observable<User> {
-  //     const url = `${this.baseUrl}/users/${id}`;
-  //     return this.http.put<User>(url, userDetails);
-  // }
+
   deleteUser(id: string): Observable<void> {
       const url = `${this.baseUrl}/admin/delete-user`;
       const headers = new HttpHeaders({
@@ -146,5 +143,12 @@ export class AuthService {
       const data = { userId: id };
       console.log(data);
       return this.http.post<void>(url, data, {headers});
+  }
+  addMeterbyAdmin(meterData: any){
+    const url = `${this.baseUrl}/admin/add-meter`;
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${this.token}`
+    });
+    return this.http.post(url, meterData, { headers });
   }
 }

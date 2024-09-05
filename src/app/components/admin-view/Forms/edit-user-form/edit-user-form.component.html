@@ -47,4 +47,18 @@
         </button>
     </form>
 </div>
+<div class="container">
+    <button class="btn" (click)="openAddMeterForm=true" style="background-color: aqua;color: #000;">
+        {{ 'Assign Meter to User'}}
+    </button>
+    <form [formGroup]="addMeterForm" (ngSubmit)="submitMeter()" *ngIf="openAddMeterForm">
+        <div class="form-group"> 
+            <label for="macAddress">MAC Address:</label>
+            <input type="text" id="macAddress" formControlName="macAddress" class="form-control">
+        </div>
+        <button type="submit" class="btn">
+            Add Meter
+        </button>
+    </form>
+</div>
 <app-footer></app-footer>

@@ -10,8 +10,10 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class EditUserFormComponent {
   adminForm: FormGroup;
+  addMeterForm: FormGroup;
   adminId: string;
   isEditing: boolean;
+  openAddMeterForm:boolean =false;
 
   constructor(
     private fb: FormBuilder, 
@@ -21,9 +23,7 @@ export class EditUserFormComponent {
 
   ngOnInit() {
     this.adminId = this.route.snapshot.paramMap.get('id');
-    console.log(this.adminId)
     this.isEditing = !!this.adminId;
-    console.log('this.isEditing', this.isEditing);
 
 
     this.adminForm = this.fb.group({
@@ -38,8 +38,10 @@ export class EditUserFormComponent {
       age: ['', Validators.required],
       gender: ['', Validators.required],
       phoneNumber: ['', Validators.required],
-      // meterIDs: ['', Validators.required],
       role:['admin']
+    });
+    this.addMeterForm = this.fb.group({
+      macAddress: ['',Validators.required],
     });
 
     if (this.isEditing) {
@@ -65,7 +67,6 @@ export class EditUserFormComponent {
           age: adminData.age,
           gender: adminData.gender,
           phoneNumber: adminData.phoneNumber,
-          // meterIDs: adminData.meters[0],
           role: adminData.role
         });
       }
@@ -88,6 +89,16 @@ export class EditUserFormComponent {
         this.router.navigate(['/users']); 
       });
     }
+  }
+  submitMeter() {
+    const formData = this.addMeterForm.value;
+    const meterData = {
+      userId : this.adminId,
+      mac: formData.macAddress
+    }
+    this.userService.addMeterbyAdmin(meterData).subscribe(() => {
+      this.router.navigate(['/users']); 
+    });
   }
 
 }
