@@ -4,11 +4,6 @@
     padding: 20px; 
     border-top: 1px solid rgba(0, 0, 0, 0.1);
 
-    h4{
-        margin-bottom: 25px;
-        color: var(--dark-blue);
-    }
-
     ul {
         list-style-type: none; 
     }
@@ -29,6 +24,10 @@
     .social-icon{
         display: block;
     }
+}
+h4{
+    margin-bottom: 25px;
+    color: var(--dark-blue);
 }
 .company,
 .help,
