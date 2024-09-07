@@ -44,6 +44,9 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { UsersTableComponent } from './components/admin-view/users-table/users-table.component';
 import { EditUserFormComponent } from './components/admin-view/Forms/edit-user-form/edit-user-form.component';
 import { ContactComponent } from './components/contact/contact.component';
+import { AboutUsComponent } from './components/about-us/about-us.component';
+import { TermsConditionsComponent } from './components/terms-conditions/terms-conditions.component';
+import { PrivacyPolicyComponent } from './components/privacy-policy/privacy-policy.component';
 
 @NgModule({
   declarations: [
@@ -61,7 +64,10 @@ import { ContactComponent } from './components/contact/contact.component';
     PopupComponent,
     UsersTableComponent,
     EditUserFormComponent,
-    ContactComponent
+    ContactComponent,
+    AboutUsComponent,
+    TermsConditionsComponent,
+    PrivacyPolicyComponent
   ],
   imports: [
     BrowserModule,

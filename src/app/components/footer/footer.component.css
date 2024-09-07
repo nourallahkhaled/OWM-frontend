@@ -4,19 +4,6 @@
     padding: 20px; 
     border-top: 1px solid rgba(0, 0, 0, 0.1);
 
-
-    .footer-logo{
-        margin-left: 150px;
-        margin-top: 20px;
-        height: auto;
-        width: 150px;
-    }
-    .company,
-    .help,
-    .social-media {
-        display: inline-block;
-        margin: 0 140px; 
-    }
     h4{
         margin-bottom: 25px;
         color: var(--dark-blue);
@@ -43,9 +30,23 @@
         display: block;
     }
 }
+.company,
+.help,
+.social-media {
+    display: inline-block;
+    margin: 0 140px; 
+}
+.footer-logo{
+    margin-left: 150px;
+    width: 150px;
+    margin-top: -50px;
+}
 .copyrights{
     text-align: center; 
     background-color: white; 
     color: var(--dark-blue);
     padding: 20px; 
+}
+.social-media a{
+    margin-bottom: 10px;
 }
