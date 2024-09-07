@@ -7,7 +7,7 @@ import { BehaviorSubject, Observable, catchError, map, of } from 'rxjs';
   providedIn: 'root'
 })
 export class AuthService {
-  private baseUrl = 'https://owmmeter.com';
+  private baseUrl = 'https://owmmeter.com/backend';
   private token: string = null;
   private userId: string = null;
   private role: string = null;

@@ -7,7 +7,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class DataService {
-    private baseUrl = 'https://owmmeter.com';
+    private baseUrl = 'https://owmmeter.com/backend';
     private token: string = null;
     selectedMeterID: string  = '';
 
