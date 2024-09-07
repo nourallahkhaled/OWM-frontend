@@ -15,12 +15,12 @@ import { EditUserFormComponent } from './components/admin-view/Forms/edit-user-f
 import { ContactComponent } from './components/contact/contact.component';
 
 const routes: Routes = [
-  {path:'home', component: HomeComponent, canActivate: [authGuard]},
-  {path:'', redirectTo:'home', pathMatch:'full'},
+  {path:'landing', component: LandingComponent},
+  {path:'', redirectTo:'landing', pathMatch:'full'},
   {path:'register', component: RegisterComponent},
   {path:'login', component: LoginComponent},
   {path:'consumption', component: ConsumptionComponent},
-  {path:'landing', component: LandingComponent},
+  {path:'home', component: HomeComponent},
   {path:'bills', component: BillsComponent},
   {path:'leakage', component: LeakageComponent},
   {path:'profile', component: ProfileComponent},

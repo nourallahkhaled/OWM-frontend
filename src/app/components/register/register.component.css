@@ -13,22 +13,25 @@
     text-align: center;
     z-index: -1;
 
-    h2{
-        color: var(--beige);
-        font-size: 36px;
-        margin-top: 40px ;
-        text-align: center;
-        padding-left: 60px;
+}
+.left-section .owm-logo {
+    display: block; 
+    margin: 0 auto; 
+    margin-top: 150px;
+}
+.left-section h2{
+    color: var(--beige);
+    font-size: 36px;
+    margin-top: 40px ;
+    text-align: center;
 
-    }
-    p{
-        color: white;
-        font-size: 16px;
-        text-align: center;
-        width: 85%;
-        padding-left: 60px;
-        line-height: 1.5;
-    }
+}
+.left-section p {
+    margin: 0 auto;
+    max-width: 600px; 
+    color: white;
+    font-size: 16px;
+    line-height: 1.5;
 }
 .left-section::before {
     content: ""; 
