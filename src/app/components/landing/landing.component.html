@@ -1,8 +1,8 @@
 <app-header></app-header>
 <section class="header">
     <div class="container">
-        <h1 class="page-title">Welcome to Water Smart Meter</h1>
-        <p class="page-text">Track your water consumption in real-time and optimize your usage</p>
+        <h1 class="page-title animate-txt">Welcome to the Oracle Water Flow Smart Meter</h1>
+        <p class="page-text animate-txt">Track your water consumption in real-time and optimize your usage</p>
     </div>
 </section>
 
@@ -32,19 +32,19 @@
 
     <div class="container">
         <div class="banner-item">
-            <h2>25000</h2>
+            <h2>300</h2>
             <p>LEAKAGES DETECTED</p>
         </div>
         <div class="banner-item">
-            <h2>374</h2>
+            <h2>3</h2>
             <p>HAPPY CLIENTS</p>
         </div>
         <div class="banner-item">
-            <h2>350000</h2>
+            <h2>50</h2>
             <p>WIRES & CABLES CAPABILITY</p>
         </div>
         <div class="banner-item">
-            <h2>23</h2>
+            <h2>13</h2>
             <p>AWARDS</p>
         </div>
     </div>
@@ -67,12 +67,21 @@
     </div>
 </section>
 
-
 <section class="team">
     <div class="container">
         <h2>Meet the Founders</h2>
+    
+        <!-- First Founder card -->
+        <div class="team-founder">
+            <div class="team-member">
+                <img [src]="teamMembers[4].photoUrl" alt="{{ teamMembers[4].name }}">
+                <h3>{{ teamMembers[4].name }}</h3>
+                <p>{{ teamMembers[4].role }}</p>
+            </div>
+        </div>
+        <!-- Rest of the team members in pairs -->
         <div class="team-members">
-            <div class="team-member" *ngFor="let member of teamMembers">
+            <div class="team-member" *ngFor="let member of teamMembers.slice(0, 4); let i = index;">
                 <img [src]="member.photoUrl" alt="{{ member.name }}">
                 <h3>{{ member.name }}</h3>
                 <p>{{ member.role }}</p>

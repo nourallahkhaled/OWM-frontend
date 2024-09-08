@@ -7,9 +7,11 @@ import { Component } from '@angular/core';
 })
 export class LandingComponent {
   teamMembers = [
-    { name: 'Noor El-Deen Magdy', role: 'CEO', photoUrl: '../assets/images/Noor El Deen Magdy.jpg' },
-    { name: 'Moataz Hosny', role: 'CTO', photoUrl: '../assets/images/Moutaz.jpeg' },
-    { name: 'Rawan Mahmoud', role: 'CTO', photoUrl: '../assets/images/Rawan 1.jpeg' },
-    { name: 'Asmaa Latif', role: 'CTO', photoUrl: '../assets/images/Asmaa.jpeg' },
+    { name: 'Rawan Mahmoud', role: 'Co-Founder - Marketing Specialist', photoUrl: '../assets/images/team/Rawan.jpeg' },
+    { name: 'Asmaa Latif', role: 'Co-Founder - Embedded Hardware Engineer', photoUrl: '../assets/images/team/Asmaa.jpeg' },
+    { name: 'Nourallah Khaled', role: 'Frontend Web Developer', photoUrl: '../assets/images/team/Nourallah.jpeg' },
+    { name: 'Mohab Yasser', role: 'Backend Web Developer', photoUrl: '../assets/images/team/Mohab.jpeg' },
+    { name: 'Noor El-Deen Magdy', role: 'Founder - CTO', photoUrl: '../assets/images/team/Noor El Deen Magdy.jpg' },
+
   ];
 }
