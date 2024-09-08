@@ -141,7 +141,6 @@ export class AuthService {
         'Authorization': `Bearer ${this.token}`
       });
       const data = { userId: id };
-      console.log(data);
       return this.http.post<void>(url, data, {headers});
   }
   addMeterbyAdmin(meterData: any){

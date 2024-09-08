@@ -29,12 +29,10 @@ export class LoginComponent {
 
   loginUser() {
     const postData = { ...this.loginForm.value };
-    console.log(this.loginForm.value);
     this.authService.loginUser(postData).subscribe(
       response => {
-        console.log(response)
         this.authService.handleLoginResponse(response);
-        this.router.navigate(['landing']);
+        this.router.navigate(['']);
       },
       error => {
         this.snackBar.open('Something went wrong.', 'Close', {

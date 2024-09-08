@@ -37,7 +37,7 @@ export class ConsumptionComponent {
   ) { }
   onSelect(event: any): void {
     // Your logic here
-    console.log('Selected data:', event);
+    // console.log('Selected data:', event);
   }
   
 
@@ -105,7 +105,7 @@ export class ConsumptionComponent {
   }
   applyTimeFilter(selectedFilter: string): void {
     // Logic to handle filtering based on the selectedFilter value
-    console.log(selectedFilter);
+    // console.log(selectedFilter);
   }
   
   getFlowLineChartData() {

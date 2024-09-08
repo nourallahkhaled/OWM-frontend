@@ -25,7 +25,6 @@ export class UsersTableComponent {
   loadUsers() {
     this.authService.getAllUsers().subscribe((response: { users: User[], message: string }) => {
       this.users = response.users;
-      console.log(this.users);
       this.adminUsers = this.users.filter(user => user.role === 'admin');
       this.nonAdminUsers = this.users.filter(user => user.role !== 'admin');
       this.metersIDs = this.users.filter(user => user.meters && user.meters.length > 0);

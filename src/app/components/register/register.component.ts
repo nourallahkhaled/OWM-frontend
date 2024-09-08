@@ -75,7 +75,6 @@ export class RegisterComponent {
               this.router.navigate(['login']);
             },
             error => {
-              console.log(error.status)
               if(error.status === 0){
                 this.snackBar.open('Email Already Exist.', 'Close', {
                   duration: 3000,

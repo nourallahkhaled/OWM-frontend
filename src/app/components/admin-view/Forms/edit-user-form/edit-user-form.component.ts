@@ -54,7 +54,6 @@ export class EditUserFormComponent {
     this.userService.getUserDataById(this.adminId).subscribe((admin) => {
       if (admin) {
         const adminData = admin.user; 
-        console.log('adminData', adminData)
         this.adminForm.setValue({
           userId: adminData._id,
           firstName: adminData.firstName,
@@ -76,7 +75,6 @@ export class EditUserFormComponent {
 
   submitAdmin() {
     const formData = this.adminForm.value;
-    console.log(formData);
 
     if (this.isEditing) {
       // Handle editing logic here

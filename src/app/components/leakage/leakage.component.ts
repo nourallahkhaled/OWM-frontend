@@ -120,7 +120,7 @@ getLeakageData() {
     };
     this.dataService.detectLeakage(data).subscribe(
       response => {
-        console.log(response);
+        // console.log(response);
       },
       error => {
       }

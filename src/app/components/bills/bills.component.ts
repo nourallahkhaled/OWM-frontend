@@ -28,7 +28,6 @@ export class BillsComponent {
     this.dataService.getBill().subscribe(
       (response: any) => {
         this.money = response.totalBalance;
-        console.log(this.money);
 
       },
       error => {
