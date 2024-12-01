@@ -17,8 +17,8 @@ import { PrivacyPolicyComponent } from './components/privacy-policy/privacy-poli
 import { NewPasswordComponent } from './components/new-password/new-password.component';
 
 const routes: Routes = [
-  // {path:'', component: LandingComponent},
-  {path:'', redirectTo:'landing', pathMatch:'full'},
+  {path:'', component: LandingComponent},
+  // {path:'', redirectTo:'landing', pathMatch:'full'},
   // {path:'register', component: RegisterComponent},
   {path:'login', component: LoginComponent},
   {path:'new-password/:token', component: NewPasswordComponent},
