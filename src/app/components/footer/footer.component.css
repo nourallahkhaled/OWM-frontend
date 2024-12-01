@@ -1,48 +1,92 @@
 .footer {
-    background-color: white; 
-    color: var(--dark-blue); 
-    padding: 20px; 
+    background-color: white;
+    color: var(--dark-blue);
+    padding: 20px;
     border-top: 1px solid rgba(0, 0, 0, 0.1);
-
-    ul {
-        list-style-type: none; 
-    }
-
-    ul li {
-        margin-right: 20px;
-        margin-bottom: 15px;
-    }
-
-    ul li a {
-        color: var(--dark-blue); 
-        text-decoration: none;
-    }
-
-    ul li a:hover {
-        color: var(--blue); 
-    }
-    .social-icon{
-        display: block;
-    }
+    display: flex;
+    flex-wrap: wrap; /* Allow items to wrap on smaller screens */
+    justify-content: center; /* Center items horizontally */
+    align-items: flex-start; /* Align items to the top */
+    gap: 20px; /* Add spacing between items */
 }
-h4{
-    margin-bottom: 25px;
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+ul li {
+    margin-bottom: 15px;
+}
+
+ul li a {
+    color: var(--dark-blue);
+    text-decoration: none;
+}
+
+ul li a:hover {
+    color: var(--blue);
+}
+
+.social-icon {
+    display: block;
+}
+
+h4 {
+    margin-bottom: 15px;
     color: var(--dark-blue);
 }
+
 .company,
 .help,
 .social-media {
-    display: inline-block;
-    margin: 0 140px; 
+    flex: 1 1 200px; /* Allow each section to take up at least 200px and expand equally */
+    max-width: 300px; /* Prevent sections from growing too large */
 }
-.footer-logo{
-    margin-left: 150px;
+
+.footer-logo {
+    margin: 0 auto;
     width: 150px;
-    margin-top: -50px;
 }
-.copyrights{
-    text-align: center; 
-    background-color: white; 
+
+.copyrights {
+    text-align: center;
+    background-color: white;
     color: var(--dark-blue);
-    padding: 20px; 
+    padding: 20px;
+    flex-basis: 100%; /* Make the copyright text take the full width */
+}
+
+/* Media Queries for smaller screens */
+@media (max-width: 768px) {
+    .company,
+    .help,
+    .social-media {
+        flex: 1 1 100%; /* Make sections stack on smaller screens */
+        text-align: center; /* Center text for better readability */
+    }
+
+    h4 {
+        margin-bottom: 10px;
+    }
+
+    .footer-logo {
+        margin: 0 auto 20px; /* Center the logo with spacing below */
+    }
+}
+
+@media (max-width: 480px) {
+    ul li {
+        margin-bottom: 10px;
+    }
+
+    .footer {
+        padding: 10px;
+        gap: 10px;
+    }
+
+    .copyrights {
+        padding: 10px;
+        font-size: 14px;
+    }
 }

@@ -1,5 +1,6 @@
 import { AfterViewInit, Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { User } from 'src/app/interfaces/auth';
 import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
@@ -12,6 +13,7 @@ export class HeaderComponent implements AfterViewInit {
   loggedIn: boolean = false;
   isAdmin: boolean = false;
   userId: string
+  username:string;
 
   constructor(
     private authService: AuthService,
@@ -20,6 +22,7 @@ export class HeaderComponent implements AfterViewInit {
   ) {
     if(localStorage.getItem('token')){
       this.loggedIn = true;
+      this.username = localStorage.getItem('username')
     }
     if(localStorage.getItem('role') == 'admin'){
       this.isAdmin = true;

@@ -14,12 +14,14 @@ import { ContactComponent } from './components/contact/contact.component';
 import { AboutUsComponent } from './components/about-us/about-us.component';
 import { TermsConditionsComponent } from './components/terms-conditions/terms-conditions.component';
 import { PrivacyPolicyComponent } from './components/privacy-policy/privacy-policy.component';
+import { NewPasswordComponent } from './components/new-password/new-password.component';
 
 const routes: Routes = [
-  {path:'', component: LandingComponent},
-  // {path:'', redirectTo:'landing', pathMatch:'full'},
+  // {path:'', component: LandingComponent},
+  {path:'', redirectTo:'landing', pathMatch:'full'},
   // {path:'register', component: RegisterComponent},
   {path:'login', component: LoginComponent},
+  {path:'new-password/:token', component: NewPasswordComponent},
   {path:'about', component: AboutUsComponent},
   {path:'consumption', component: ConsumptionComponent},
   {path:'home', component: HomeComponent},

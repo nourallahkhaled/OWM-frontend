@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { RegisterComponent } from './components/register/register.component';
@@ -47,6 +46,10 @@ import { ContactComponent } from './components/contact/contact.component';
 import { AboutUsComponent } from './components/about-us/about-us.component';
 import { TermsConditionsComponent } from './components/terms-conditions/terms-conditions.component';
 import { PrivacyPolicyComponent } from './components/privacy-policy/privacy-policy.component';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { LoadingInterceptor } from './services/loading.interceptor';
+import { SpinnerComponent } from './shared/spinner/spinner.component';
+import { NewPasswordComponent } from './components/new-password/new-password.component';
 
 @NgModule({
   declarations: [
@@ -67,7 +70,9 @@ import { PrivacyPolicyComponent } from './components/privacy-policy/privacy-poli
     ContactComponent,
     AboutUsComponent,
     TermsConditionsComponent,
-    PrivacyPolicyComponent
+    PrivacyPolicyComponent,
+    SpinnerComponent,
+    NewPasswordComponent
   ],
   imports: [
     BrowserModule,
@@ -99,7 +104,14 @@ import { PrivacyPolicyComponent } from './components/privacy-policy/privacy-poli
     MatTabsModule,
     MatCheckboxModule
   ],
-  providers: [MessageService],
+  providers: [
+    MessageService,
+    {
+      provide: HTTP_INTERCEPTORS, // Add the LoadingInterceptor
+      useClass: LoadingInterceptor,
+      multi: true, // Allows multiple interceptors to be chained
+    },
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

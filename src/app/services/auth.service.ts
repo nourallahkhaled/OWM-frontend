@@ -10,6 +10,7 @@ export class AuthService {
   private baseUrl = 'https://owmmeter.com/backend';
   private token: string = null;
   private userId: string = null;
+  private username: string = null;
   private role: string = null;
   private loggedIn$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
@@ -19,6 +20,9 @@ export class AuthService {
 
   getUserId(): string {
     return this.userId;
+  }
+  getUsername(): string {
+    return this.username;
   }
   getRole(): string {
     return this.role;
@@ -32,6 +36,7 @@ export class AuthService {
   constructor(private http: HttpClient) { 
     this.token = localStorage.getItem('token');
     this.userId = localStorage.getItem('userId');
+    this.username = localStorage.getItem('username');
 
   }
 
@@ -40,10 +45,12 @@ export class AuthService {
     if (response && response.user) {
       this.token = response.user.token_data.access_token;
       this.userId = response.user.id;
+      this.username = response.user.first_name;
       this.role = response.user.role;
       this.loggedIn$.next(true);
       localStorage.setItem('token', this.token);
       localStorage.setItem('userId', this.userId);
+      localStorage.setItem('username', this.username);
       localStorage.setItem('role', this.role);
     }
   }
@@ -51,11 +58,13 @@ export class AuthService {
   logout(): void {
     this.token = null;
     this.userId = null;
+    this.username = null;
     this.loggedIn$.next(false);
     // Clear token from storage if applicable
     localStorage.removeItem('token');
     localStorage.removeItem('userId');
     localStorage.removeItem('role');
+    localStorage.removeItem('username');
 
   }
 
@@ -149,5 +158,15 @@ export class AuthService {
       'Authorization': `Bearer ${this.token}`
     });
     return this.http.post(url, meterData, { headers });
+  }
+
+  // Forget Password
+  sendResetLink(email:any){
+    const url = `${this.baseUrl}/user/forget-password`;
+    return this.http.post(url, email);
+  }
+  resetPassword(data:any){
+    const url = `${this.baseUrl}/user/reset-password`;
+    return this.http.post(url, data);
   }
 }

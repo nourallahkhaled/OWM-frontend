@@ -36,7 +36,7 @@
 .left-section::before {
     content: ""; 
     position: absolute; 
-    top: 80px;
+    top: 190px;
     bottom: 10px;
     left: 50px;
     right: 0px;

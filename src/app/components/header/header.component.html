@@ -11,13 +11,25 @@
                     <li class="nav-item"><a class="nav-link" routerLink="/about">About</a></li>
                     <li class="nav-item" *ngIf="loggedIn && !isAdmin"><a class="nav-link" routerLink="/consumption">Consumption</a></li>
                     <li class="nav-item" *ngIf="loggedIn && !isAdmin"><a class="nav-link" routerLink="/leakage">Leakage</a></li>
-                    <li class="nav-item" *ngIf="loggedIn && !isAdmin"><a class="nav-link" routerLink="/profile/{{userId}}">Profile</a></li>
+                    <!-- <li class="nav-item" *ngIf="loggedIn && !isAdmin"><a class="nav-link" routerLink="/profile/{{userId}}">Profile</a></li> -->
                     <li class="nav-item"><a class="nav-link" routerLink="/contact-us">Contact Us</a></li>
                     <li class="nav-item" *ngIf="loggedIn && isAdmin"><a class="nav-link" routerLink="/users">Dashboard</a></li>
                     <li class="nav-item" *ngIf="loggedIn && !isAdmin"><a class="nav-link" routerLink="/bills">Payment</a></li>
                     <!-- <li class="nav-item" *ngIf="!loggedIn"><a class="nav-link" routerLink="/register">Register</a></li> -->
                     <li class="nav-item" *ngIf="!loggedIn"><a class="nav-link" routerLink="/login">Login</a></li>
-                    <li class="nav-item" *ngIf="loggedIn"><a class="nav-link" (click)="logoutUser()">Logout</a></li>
+                    <!-- <li class="nav-item" *ngIf="loggedIn"><a class="nav-link" (click)="logoutUser()">Logout</a></li> -->
+                    <li class="nav-item dropdown" *ngIf="loggedIn">
+                        <a class="nav-link dropdown-toggle d-flex align-items-center" href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" width="20px" height="20px">
+                                <path fill="#008dda" d="M224 256A128 128 0 1 0 224 0a128 128 0 1 0 0 256zm-45.7 48C79.8 304 0 383.8 0 482.3C0 498.7 13.3 512 29.7 512l388.6 0c16.4 0 29.7-13.3 29.7-29.7C448 383.8 368.2 304 269.7 304l-91.4 0z"/>
+                            </svg>
+                            <span style="margin-left: 2px;">{{username}}</span>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+                            <li><a class="dropdown-item" routerLink="/profile/{{userId}}">Profile</a></li>
+                            <li><a class="dropdown-item" (click)="logoutUser()">Logout</a></li>
+                        </ul>
+                    </li>
                 </ul>
             </div>
         </div>
