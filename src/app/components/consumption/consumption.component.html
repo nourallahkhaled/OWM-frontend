@@ -7,11 +7,22 @@
 <section class="consumption-page">
     <div class="accordion-container">
         <mat-accordion>
-            <!-- First Accordion -->
+            <!-- Real Time  -->
             <mat-expansion-panel>
                 <mat-expansion-panel-header>
                     <mat-panel-title class="accordion-title">
                         Real Time Consumption Charts
+                    </mat-panel-title>
+                </mat-expansion-panel-header>
+                <div class="box-container responsive-chart">
+                    <canvas id="realTimeChart"></canvas>
+                </div>
+            </mat-expansion-panel>
+            <!-- First Accordion -->
+            <mat-expansion-panel>
+                <mat-expansion-panel-header>
+                    <mat-panel-title class="accordion-title">
+                        Flow, Water and Pressure Consumption Charts
                     </mat-panel-title>
                 </mat-expansion-panel-header>
                 <div class="box-container responsive-chart">

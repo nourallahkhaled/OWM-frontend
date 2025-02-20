@@ -5,6 +5,7 @@ import mqtt, { MqttClient } from 'mqtt';
 import { DataService } from 'src/app/services/data.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { User } from 'src/app/interfaces/auth';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-leakage',
@@ -43,6 +44,10 @@ export class LeakageComponent implements OnInit, OnDestroy {
     );
     if (this.userId) {
       this.getLeakageData();
+      const storedStatus = localStorage.getItem('motorValveStatus');
+      if (storedStatus !== null) {
+        this.isMotorValveOpened = JSON.parse(storedStatus);
+      }
     } else {
       console.error('User ID is not available.');
     }
@@ -53,9 +58,32 @@ export class LeakageComponent implements OnInit, OnDestroy {
   }
 
   onToggleChange() {
-    const action = this.isMotorValveOpened ? 'Opening Motor Valve...' : 'Closing Motor Valve...';
-    this.openDialog(action);
+    const data: any = {
+      meterId: this.selectedMeterID, 
+      userId: this.userId
+    };
+  
+    this.dataService.ToggleMotorValve(data).subscribe(
+      (response: any) => {
+        console.log(response); 
+  
+        // Determine the valve state based on response message
+        if (response.message.toLowerCase().includes('closed')) {
+          this.isMotorValveOpened = false;
+        } else if (response.message.toLowerCase().includes('open')) {
+          this.isMotorValveOpened = true;
+        }
+        localStorage.setItem('motorValveStatus', JSON.stringify(this.isMotorValveOpened));
+        // Show appropriate dialog
+        const action = this.isMotorValveOpened ? 'Opening Motor Valve...' : 'Closing Motor Valve...';
+        this.openDialog(action);
+      },
+      error => {
+        console.error('Error toggling motor valve:', error);
+      }
+    );
   }
+  
 
   motorStatusDetectionClicked() {
     this.openDialog('Checking Motor Valve Status...');

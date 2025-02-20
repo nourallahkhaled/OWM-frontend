@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root'
 })
 export class DataService {
     private baseUrl = 'https://owmmeter.com/backend';
@@ -60,6 +60,13 @@ export class DataService {
     }
     detectLeakage(data){
         const url = `${this.baseUrl}/meter/leakage-detected`
+        const headers = new HttpHeaders({
+            'Authorization': `Bearer ${this.token}`
+        });
+        return this.http.post<any>(url, data, { headers });
+    }
+    ToggleMotorValve(data){
+        const url = `${this.baseUrl}/meter/valve-status`
         const headers = new HttpHeaders({
             'Authorization': `Bearer ${this.token}`
         });
