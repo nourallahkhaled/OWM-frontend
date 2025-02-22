@@ -59,8 +59,7 @@ export class LeakageComponent implements OnInit, OnDestroy {
 
   onToggleChange() {
     const data: any = {
-      meterId: this.selectedMeterID, 
-      userId: this.userId
+      meterId: this.selectedMeterID
     };
   
     this.dataService.ToggleMotorValve(data).subscribe(
@@ -110,7 +109,7 @@ getLeakageData() {
     console.log('Connected to MQTT broker');
     
     if (this.userId) {
-      this.mqttClient.subscribe(this.userId, (err) => {
+      this.mqttClient.subscribe(`leakage${this.userId}`, (err) => {
         if (err) {
           console.error('Failed to subscribe to the topic:', err);
         } else {
@@ -148,7 +147,7 @@ getLeakageData() {
     };
     this.dataService.detectLeakage(data).subscribe(
       response => {
-        // console.log(response);
+        console.log(response);
       },
       error => {
       }

@@ -78,7 +78,7 @@ export class ConsumptionComponent {
     this.mqttClient.on('connect', () => {
       console.log('Connected to MQTT broker');
 
-      this.mqttClient.subscribe(this.userId!, (err) => {
+      this.mqttClient.subscribe(`data${this.userId!}`, (err) => {
         if (err) {
           console.error('Failed to subscribe to the topic:', err);
         } else {

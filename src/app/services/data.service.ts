@@ -66,7 +66,7 @@ export class DataService {
         return this.http.post<any>(url, data, { headers });
     }
     ToggleMotorValve(data){
-        const url = `${this.baseUrl}/meter/valve-status`
+        const url = `${this.baseUrl}/user/valve-status`
         const headers = new HttpHeaders({
             'Authorization': `Bearer ${this.token}`
         });
