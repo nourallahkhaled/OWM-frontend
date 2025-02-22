@@ -72,7 +72,7 @@ export class ConsumptionComponent {
   }
 
   private subscribeToConsumption() {
-    const brokerUrl = 'wss://owmmeter.com:9001/mqtt';
+    const brokerUrl = 'wss://owmmeter.com/mqtt';
     this.mqttClient = mqtt.connect(brokerUrl);
 
     this.mqttClient.on('connect', () => {
