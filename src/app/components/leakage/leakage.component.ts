@@ -101,7 +101,7 @@ export class LeakageComponent implements OnInit, OnDestroy {
 
 getLeakageData() {
   // For WebSocket connection
-  const brokerUrl = 'ws://owmmeter.com:9001/mqtt';
+  const brokerUrl = 'wss://owmmeter.com:9001/mqtt';
 
   this.mqttClient = mqtt.connect(brokerUrl);
 
