@@ -11,7 +11,7 @@
         <img src="../../../assets/images/water-pipe.png" alt="">
         <div>
             <p><strong>Leakage Status: </strong></p>
-            <p>{{leakageMessage}}</p>
+            <p>{{ leakageMessage || 'No Leakage Detected on Your Meter' }}</p>
         </div>
     </div>
 </section>
